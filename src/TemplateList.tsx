@@ -35,7 +35,6 @@ export default function TemplateList({
     stripFinalNewline: true
   });
 
-  // log the data
   useEffect(() => {
     console.log('DATA', data)
   }, [data])
@@ -46,62 +45,6 @@ export default function TemplateList({
     return templates
   }, [isLoading, data]);
 
-  // useLayoutEffect(() => {
-  //   setRes(JSON.parse(data))
-  // }, [isLoading, data, category])
-
-  // const { isLoading, data, error } = useFetch(`https://replit.com/graphql`, {
-  //   // to make sure the screen isn't flickering when the searchText changes
-  //   keepPreviousData: false,
-  //   method: 'POST',
-  //   // headers
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "Connection": "keep-alive",
-  //     "Origin": "https://replit.com",
-  //     "x-requested-with": "wow",
-  //   },
-  //   body: JSON.stringify({
-  //     query: `{
-  //       templateRepls2(options: { count: 100, category: $category }) {
-  //         __typename
-  //         ... on TemplateReplSearchConnection {
-  //           category
-  //           items {
-  //             title
-  //             imageUrl
-  //             iconUrl
-  //             templateCategories {
-  //               title
-  //               id
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //     `,
-  //     variables: {
-  //       category
-  //     }
-  //   })
-  // })
-  
-
-  // console.log('DATA', data)
-  // console.log('CATEGORY', category)
-
-  // // const response = useMemo(() => res, [isLoading, data, category]);
-
-  // const results = useMemo(() => {
-  //   if (!res) return [];
-  //   const templates = res.data.templateRepls2.items;
-  //   return templates
-  // }, [isLoading, res]);
-
-
-  // useEffect(() => {
-  //   console.log('RESULTS', results)
-  // }, [results])
 
   return (
     <List isLoading={isLoading || !data}>
