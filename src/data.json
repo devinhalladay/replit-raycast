@@ -1,0 +1,966 @@
+{
+  "data": {
+    "templateRepls2": {
+      "__typename": "TemplateReplSearchConnection",
+      "items": [
+        {
+          "id": "8d4142a6-b4ad-4e1c-940b-15b99773aa04",
+          "slug": "Python",
+          "likeCount": 2180,
+          "url": "/@replit/Python",
+          "publicForkCount": 695,
+          "runCount": 112024,
+          "description": "Python is a high-level, interpreted, general-purpose programming language. ",
+          "title": "Python",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1658954730090_eff60c78ac8452380b9b8ae56bda0052.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475603315_1442b3c69cc612aff6ef60cce0c69328.jpeg",
+          "templateLabel": "Python",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "03edfb54-3e37-4587-b3f4-f80fe5ee1da8",
+          "slug": "HTML-CSS-JS",
+          "likeCount": 1480,
+          "url": "/@replit/HTML-CSS-JS",
+          "publicForkCount": 405,
+          "runCount": 66572,
+          "description": "The languages that make up the web. HTML provides the basic structure, CSS controls formatting, and JavaScript controls the behavior of different elements.",
+          "title": "HTML, CSS, JS",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664473044967_513d905f04b05dc76a37ec102fb668eb.jpeg",
+          "templateLabel": "HTML, CSS, JS",
+          "templateCategories": [
+            {
+              "id": 7,
+              "title": "Websites"
+            },
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "3c5a7d20-e8bb-4a43-9f7f-062c91cdfaa8",
+          "slug": "Python-with-Turtle",
+          "likeCount": 234,
+          "url": "/@replit/Python-with-Turtle",
+          "publicForkCount": 2033637,
+          "runCount": 17528,
+          "description": "Turtle is a pre-installed Python library that enables users to create pictures and shapes.",
+          "title": "Python (with Turtle)",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664476442818_68cab2805d9df49e3a6925c732562cc3.jpeg",
+          "templateLabel": "Python (with Turtle)",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "99a4055b-90db-414c-9c47-3c1025bc7731",
+          "slug": "CPlusPlus",
+          "likeCount": 490,
+          "url": "/@replit/CPlusPlus",
+          "publicForkCount": 40,
+          "runCount": 13768,
+          "description": "C++ is a low-level and cross-platform imperative language. It has object-oriented, generic, and functional features.",
+          "title": "CPlusPlus",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475614749_e676afef2f67934841044fcd676436ca.jpeg",
+          "templateLabel": "C++",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "99b25562-e96e-4f2b-aca8-92103c0a7574",
+          "slug": "Nodejs",
+          "likeCount": 276,
+          "url": "/@replit/Nodejs",
+          "publicForkCount": 16739,
+          "runCount": 17569,
+          "description": " Node.js is an open-source, cross-platform, back-end JavaScript runtime environment.",
+          "title": "Node.js",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1657215199830_60d5f16c623af012c37e68f9eabcdd07.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475621720_efa68b913cf8f7ee5b6c5ccc33a85f7f.jpeg",
+          "templateLabel": "Node.js",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "85701ea6-3952-444e-9b16-f15d86b66e2a",
+          "slug": "C",
+          "likeCount": 266,
+          "url": "/@replit/C",
+          "publicForkCount": 38,
+          "runCount": 9950,
+          "description": " C is a general-purpose computer programming language. It's used in operating systems, device drivers, and protocol stacks.\n",
+          "title": "C",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475627998_03dab003aa2236b1a3f44cb52bcbdf04.jpeg",
+          "templateLabel": "C",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "77768500-5742-4790-99c2-0d420d11a783",
+          "slug": "Java-Beta",
+          "likeCount": 423,
+          "url": "/@replit/Java-Beta",
+          "publicForkCount": 42,
+          "runCount": 10372,
+          "description": "Java is a concurrent, class-based, statically typed object-oriented language.\n\n",
+          "title": "Java-Beta",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475636706_4242518983fa1131df568c361d7dc030.jpeg",
+          "templateLabel": "Java",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "a239d453-5133-4803-82bc-7db53cebb3cb",
+          "slug": "CSharp",
+          "likeCount": 166,
+          "url": "/@replit/CSharp",
+          "publicForkCount": 24,
+          "runCount": 4830,
+          "description": "C# is a general-purpose, multi-paradigm programming language.",
+          "title": "CSharp",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475642980_579628de76c0246df4b93d132eb54146.jpeg",
+          "templateLabel": "C#",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "37f7d413-55c3-42ff-9fd8-971a048b3ea9",
+          "slug": "Bash",
+          "likeCount": 85,
+          "url": "/@replit/Bash",
+          "publicForkCount": 2,
+          "runCount": 5064,
+          "description": "Bash is a Unix shell and command language.",
+          "title": "Bash",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664554382910_fd6f8b5cd69d8c4cd37662ac11fbba93.jpeg",
+          "templateLabel": "Bash",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "fb93dfd6-064f-48b9-82b5-96642bbeac1f",
+          "slug": "PHP-Web-Server",
+          "likeCount": 68,
+          "url": "/@replit/PHP-Web-Server",
+          "publicForkCount": 21,
+          "runCount": 3712,
+          "description": "PHP is a popular general scripting programming language geared towards development. ",
+          "title": "PHP Web Server",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475651720_7acc78ae3dc64a228e44324afb8f6bc3.jpeg",
+          "templateLabel": "PHP Web Server",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "ab462e7d-a286-45bb-8c40-98fda8c8f826",
+          "slug": "Pygame",
+          "likeCount": 207,
+          "url": "/@replit/Pygame",
+          "publicForkCount": 5,
+          "runCount": 18054,
+          "description": "Pygame is a cross-platform set of Python modules designed for writing video games.",
+          "title": "Pygame",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664552727161_bf028324f74568645054c6f396ace518.jpeg",
+          "templateLabel": "Pygame",
+          "templateCategories": [
+            {
+              "id": 5,
+              "title": "Games"
+            }
+          ]
+        },
+        {
+          "id": "a97a6fe7-adec-4350-8337-65846053a082",
+          "slug": "Blank-Repl",
+          "likeCount": 56,
+          "url": "/@replit/Blank-Repl",
+          "publicForkCount": 19,
+          "runCount": 1652,
+          "description": "A blank repl to build anything you want in any language. Powered by Nix.",
+          "title": "Blank Repl",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664554386522_fd6f8b5cd69d8c4cd37662ac11fbba93.jpeg",
+          "templateLabel": "Blank Repl",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "1e7f1e33-9fe9-4b3d-a83b-802b036e4b03",
+          "slug": "React-Javascript",
+          "likeCount": 92,
+          "url": "/@replit/React-Javascript",
+          "publicForkCount": 3,
+          "runCount": 5834,
+          "description": "Online React Editor and IDE: compile, run, and host React apps",
+          "title": "React Javascript",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1629500322565_d31da04e6398a9e3d3f92720533434fd.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664482201390_54d5b102c7f35e5b43228d224c94a745.jpeg",
+          "templateLabel": "React Javascript",
+          "templateCategories": [
+            {
+              "id": 7,
+              "title": "Websites"
+            }
+          ]
+        },
+        {
+          "id": "23fa2cc5-cd29-4f6f-a40a-8b2852be84b2",
+          "slug": "Python-310",
+          "likeCount": 40,
+          "url": "/@CodingCactus/Python-310",
+          "publicForkCount": 3,
+          "runCount": 1352,
+          "description": "A python 3.10 repl.",
+          "title": "Python 3.10",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1643054647168_a69442ccb6070369065520c14bc6b2a8.svg",
+          "templateLabel": "Python 3.10",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "0f18c1cb-52ee-4741-8ec2-d9817b308510",
+          "slug": "Ruby",
+          "likeCount": 41,
+          "url": "/@replit/Ruby",
+          "publicForkCount": 9,
+          "runCount": 1731,
+          "description": "Ruby is a dynamic language with a focus on simplicity and productivity.",
+          "title": "Ruby",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475661430_20d984c29691311bb8baba5d6db3b5a0.jpeg",
+          "templateLabel": "Ruby",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "9d880976-4e10-4868-90a2-0e8188a124a6",
+          "slug": "Go",
+          "likeCount": 28,
+          "url": "/@replit/Go",
+          "publicForkCount": 10,
+          "runCount": 1298,
+          "description": "Go is a statically typed yet expressive language with a focus on concurrency.",
+          "title": "Go",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475683791_c9f0e5572024db15e7cb4d543b84d4cb.jpeg",
+          "templateLabel": "Go",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "4544d621-85cf-4d30-978f-699c99deb32e",
+          "slug": "Swift",
+          "likeCount": 48,
+          "url": "/@replit/Swift",
+          "publicForkCount": 4,
+          "runCount": 1972,
+          "description": "Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple.",
+          "title": "Swift",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475680905_0948b03c767e4fc38b8e272d31dbf7d1.jpeg",
+          "templateLabel": "Swift",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "008b1b82-380f-468d-a10f-17ba07994463",
+          "slug": "p5js",
+          "likeCount": 25,
+          "url": "/@replit/p5js",
+          "publicForkCount": 10,
+          "runCount": 1094,
+          "description": "p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.",
+          "title": "p5.js",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1657642966211_8e013c3db435d82957625bb232c75c94.png",
+          "templateLabel": "p5.js",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "ecb9219d-4f89-43ec-99b5-0dfdeaec439e",
+          "slug": "Lua",
+          "likeCount": 54,
+          "url": "/@replit/Lua",
+          "publicForkCount": 2,
+          "runCount": 2305,
+          "description": "Lua is a lightweight, high-level, multi-paradigm programming language.",
+          "title": "Lua",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475688613_6389b0b7355db425d8a6f234809ddd35.jpeg",
+          "templateLabel": "Lua",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "c80e76fb-96d1-4149-b6ee-86163be92b01",
+          "slug": "SQLite",
+          "likeCount": 20,
+          "url": "/@replit/SQLite",
+          "publicForkCount": 3,
+          "runCount": 1639,
+          "description": "SQLite is a database engine written in the C language. It is one of the most widely deployed database engines.",
+          "title": "SQLite",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475713261_cd7acee61fc04ab494571f0a5ecf8bb8.jpeg",
+          "templateLabel": "SQLite",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "09550645-a9b0-4eab-b705-8294e8e262cd",
+          "slug": "Haskell",
+          "likeCount": 13,
+          "url": "/@replit/Haskell",
+          "publicForkCount": 1,
+          "runCount": 436,
+          "description": "Haskell is a general-purpose, purely functional programming language with type inference.",
+          "title": "Haskell",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475720206_35d85249e8ced0d96563e8a5c550f311.jpeg",
+          "templateLabel": "Haskell",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "de4b2399-7afd-407d-aa63-9789d8f23408",
+          "slug": "TypeScript",
+          "likeCount": 25,
+          "url": "/@replit/TypeScript",
+          "publicForkCount": 58,
+          "runCount": 1686,
+          "description": "Typescript is a strict syntactical superset of JavaScript and adds optional static typing to the language.",
+          "title": "TypeScript",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475727188_7fd35b1a4b557b522a98e87c81710992.jpeg",
+          "templateLabel": "TypeScript",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            },
+            {
+              "id": 7,
+              "title": "Websites"
+            }
+          ]
+        },
+        {
+          "id": "edd3e64b-6632-4ca8-b708-fa809f21cc41",
+          "slug": "Clojure",
+          "likeCount": 11,
+          "url": "/@replit/Clojure",
+          "publicForkCount": 0,
+          "runCount": 294,
+          "description": "Clojure is a modern JVM-based Lisp dialect with a focus on immutability.",
+          "title": "Clojure",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664554647625_069e69e2307bc9765d8a1711f3fe95ba.jpeg",
+          "templateLabel": "Clojure",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "039aab67-072e-464d-bf21-c27943653c7c",
+          "slug": "HTML-CSS-JS-Auto-Refresh-Beta",
+          "likeCount": 37,
+          "url": "/@replit/HTML-CSS-JS-Auto-Refresh-Beta",
+          "publicForkCount": 0,
+          "runCount": 2660,
+          "description": "A new HTML, CSS, JS experience based on user feedback.\n\nThis template automatically refreshes the web view when you change the content, powered by Vite.\n\nJust run the repl to get started.\n\nLet us know what you think.",
+          "title": "HTML, CSS, JS (Auto Refresh) - Beta",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475937703_ba5105617438a9458a0eec4799da1b22.jpeg",
+          "templateLabel": "HTML, CSS, JS (Auto Refresh) - Beta",
+          "templateCategories": [
+            {
+              "id": 7,
+              "title": "Websites"
+            },
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "ff306b4c-6d9e-4f3f-bc1f-61850885f712",
+          "slug": "PHP-CLI",
+          "likeCount": 10,
+          "url": "/@replit/PHP-CLI",
+          "publicForkCount": 1,
+          "runCount": 339,
+          "description": "PHP CLI is short for PHP Command Line Interface. It allows you to use PHP in the system command line.",
+          "title": "PHP CLI",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664482208631_7acc78ae3dc64a228e44324afb8f6bc3.jpeg",
+          "templateLabel": "PHP CLI",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "ca470eb9-4bb1-48b5-bad5-62736b4092a1",
+          "slug": "Kaboom",
+          "likeCount": 243,
+          "url": "/@replit/Kaboom",
+          "publicForkCount": 38,
+          "runCount": 20262,
+          "description": "Kaboom is a Javascript game programming library that helps you make games fast and fun.",
+          "title": "Kaboom",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1630621191417_36714dceaeb6dbad3f0389ca38e918ea.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664482866848_c59c2868273b2bb11d1316a17ff7cab0.jpeg",
+          "templateLabel": "Kaboom",
+          "templateCategories": [
+            {
+              "id": 5,
+              "title": "Games"
+            }
+          ]
+        },
+        {
+          "id": "8aa1df87-aaea-4e51-9d76-6aef65de4575",
+          "slug": "Nodejs-Latest",
+          "likeCount": 16,
+          "url": "/@replit/Nodejs-Latest",
+          "publicForkCount": 0,
+          "runCount": 783,
+          "description": " Node.js is an open-source, cross-platform, back-end JavaScript runtime environment. This is the latest/current/bleeding edge version. For the stable version, use https://replit.com/@replit/Nodejs.",
+          "title": "Node.js Latest",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1657214617362_bb4d6655243eb921ec31b97241370a3a.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475853020_efa68b913cf8f7ee5b6c5ccc33a85f7f.jpeg",
+          "templateLabel": "Node.js Latest",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "1cf736d1-70f9-4794-bbc5-8a0df29802da",
+          "slug": "Rust",
+          "likeCount": 45,
+          "url": "/@replit/Rust",
+          "publicForkCount": 2,
+          "runCount": 964,
+          "description": "Rust is a multi-paradigm, general-purpose programming language designed for performance and safety.",
+          "title": "Rust",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475874047_e13d5bd59367e4a87af9e75c2a57235b.jpeg",
+          "templateLabel": "Rust",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "91bdb273-6cc5-45fa-860a-988450b0ed71",
+          "slug": "QBasic",
+          "likeCount": 6,
+          "url": "/@replit/QBasic",
+          "publicForkCount": 0,
+          "runCount": 545,
+          "description": "QBasic is a structured programming language for beginners that supports constructs such as subroutines.",
+          "title": "QBasic",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1640030446377_7f222f78e78489a52fd64c49e31e2300.svg",
+          "templateLabel": "QBasic",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "deae3892-6483-4095-8b82-fb1ce5a869e2",
+          "slug": "Processing-Java",
+          "likeCount": 37,
+          "url": "/@templates/Processing-Java",
+          "publicForkCount": 3,
+          "runCount": 2658,
+          "description": "Get started creating graphics with Java and Processing.",
+          "title": "Processing (Java)",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1661360880745_31bee5ad977a6a665dd0b1f78a0a7d86.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664552397104_fbfa89e9ca25edcc3c687ab8ec71a017.jpeg",
+          "templateLabel": "Processing (Java)",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "f7db9801-8ee3-4e21-a1a4-be8b25eb2bd4",
+          "slug": "Discordpy-bot-template-with-commands-extension",
+          "likeCount": 275,
+          "url": "/@AllAwesome497/Discordpy-bot-template-with-commands-extension",
+          "publicForkCount": 18,
+          "runCount": 9166,
+          "description": "\nDiscord.py rewrite template with commands extension and keep_alive\n",
+          "title": "Discord.py bot template with commands extension",
+          "imageUrl": null,
+          "iconUrl": "https://replit.com/public/images/languages/python.svg",
+          "templateLabel": "Discord.py bot template with commands extension",
+          "templateCategories": [
+            {
+              "id": 8,
+              "title": "Bots"
+            }
+          ]
+        },
+        {
+          "id": "da3e5552-85f8-4a00-ae44-0e9ae5100c8a",
+          "slug": "Dart",
+          "likeCount": 19,
+          "url": "/@replit/Dart",
+          "publicForkCount": 0,
+          "runCount": 763,
+          "description": "A general-purpose programming language used to build web, server, desktop, and mobile applications.",
+          "title": "Dart",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475961350_9107c6dfb2f55864ff30a03093c0658d.jpeg",
+          "templateLabel": "Dart",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "77a5a415-52a7-4976-b829-2b3764056db1",
+          "slug": "R",
+          "likeCount": 19,
+          "url": "/@replit/R",
+          "publicForkCount": 0,
+          "runCount": 485,
+          "description": "R is a programming language for statistical computing and graphics.",
+          "title": "R",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475967324_81868a38136c81c23b9526da0bc3f6b4.jpeg",
+          "templateLabel": "R",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "993aec27-86ab-45a3-b62f-7bb83189db7e",
+          "slug": "Kotlin",
+          "likeCount": 20,
+          "url": "/@replit/Kotlin",
+          "publicForkCount": 32,
+          "runCount": 545,
+          "description": "Kotlin is a cross-platform, statically typed, general-purpose programming language with type inference.",
+          "title": "Kotlin",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1635302137515_a5f86707f8790faafdc7ff8ba12d0aa7.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664554656049_07fb1117ab14670071c75c4ef4df9fc2.jpeg",
+          "templateLabel": "Kotlin",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "c6cc2792-b633-4d11-ad39-0c6a42b6d549",
+          "slug": "Python-310",
+          "likeCount": 11,
+          "url": "/@replit/Python-310",
+          "publicForkCount": 1,
+          "runCount": 124,
+          "description": "Python is a high-level, interpreted, general-purpose programming language. ",
+          "title": "Python 3.10",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475603315_1442b3c69cc612aff6ef60cce0c69328.jpeg",
+          "templateLabel": "Python 3.10",
+          "templateCategories": []
+        },
+        {
+          "id": "2f5a0fd4-a8a7-40ad-a98c-6250eef721fb",
+          "slug": "tkinter",
+          "likeCount": 52,
+          "url": "/@templates/tkinter",
+          "publicForkCount": 0,
+          "runCount": 3810,
+          "description": "Tkinter is a Python binding to the Tk GUI toolkit. It is the standard Python interface to the Tk GUI toolkit, and is Python's de facto standard GUI. ",
+          "title": "tkinter",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1619744706953_a11b5e0a6acf250ac95d9b46d5a2673f.jpeg",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1658955765901_2fe77c23238c5cfb8073653e764935e4.png",
+          "templateLabel": "tkinter",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "6851faa6-360d-4c4b-8522-e702123c7fb9",
+          "slug": "Mono-C",
+          "likeCount": 5,
+          "url": "/@replit/Mono-C",
+          "publicForkCount": 5,
+          "runCount": 191,
+          "description": "Mono is an open source implementation of Microsoft's .NET Framework based on the ECMA standards for C# and the Common Language Runtime. A growing family of solutions and an active and enthusiastic contributing community is helping position Mono to become the leading choice for development of cross platform applications.",
+          "title": "Mono C#",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1631375242206_7bf9098ead545a6042bec7e28a8f6f86.png",
+          "templateLabel": "Mono C#",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "20c2d5c4-fb86-4d7b-abb5-a322d5d584f5",
+          "slug": "Flask",
+          "likeCount": 24,
+          "url": "/@replit/Flask",
+          "publicForkCount": 7,
+          "runCount": 1442,
+          "description": "Minimalist Python web framework.",
+          "title": "Flask",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664554393816_7a325672b4ec2f7edc93e9b99b90daff.jpeg",
+          "templateLabel": "Flask",
+          "templateCategories": [
+            {
+              "id": 7,
+              "title": "Websites"
+            }
+          ]
+        },
+        {
+          "id": "a1b1e299-f671-482d-8e00-8c83bb3121c0",
+          "slug": "Portfolio-Site-Template",
+          "likeCount": 396,
+          "url": "/@templates/Portfolio-Site-Template",
+          "publicForkCount": 2,
+          "runCount": 10435,
+          "description": "A Portfolio Site Template for Repl.it template jam!",
+          "title": "Portfolio Site Template",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1617745107233_80504dbf4c49d9f6979817cdbce3c54e.png",
+          "iconUrl": "/public/images/languages/web_project.svg",
+          "templateLabel": "Portfolio Site Template",
+          "templateCategories": [
+            {
+              "id": 7,
+              "title": "Websites"
+            }
+          ]
+        },
+        {
+          "id": "7ea0d2ac-e607-4555-9079-d7cd062e829e",
+          "slug": "Scala",
+          "likeCount": 6,
+          "url": "/@replit/Scala",
+          "publicForkCount": 0,
+          "runCount": 115,
+          "description": "Scala combines object-oriented and functional programming in one concise, high-level language",
+          "title": "Scala",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475817324_aad91a7875f13d1e568eb65afef8c89b.jpeg",
+          "templateLabel": "Scala",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "fe54b4a7-0a5c-4e18-885a-761b40ae3805",
+          "slug": "Java-Swing",
+          "likeCount": 15,
+          "url": "/@replit/Java-Swing",
+          "publicForkCount": 1,
+          "runCount": 758,
+          "description": "Java is a popular object-oriented language. Swing is a graphical user interface (GUI) toolkit for creating interactive applications in Java.",
+          "title": "Java (Swing)",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1661798304827_008d76ce0d592c1e3f22cd13b936d6c3.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1656700140894_bfb08732625eec1749c0e69cc97d738f.png",
+          "templateLabel": "Java (Swing)",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "6e7e6106-efe8-4750-819f-6f5e5cd98587",
+          "slug": "CPlusPlus-CMake-Project",
+          "likeCount": 9,
+          "url": "/@replit/CPlusPlus-CMake-Project",
+          "publicForkCount": 0,
+          "runCount": 203,
+          "description": "A general purpose system programming language. Supports multiple files. Compiled with CMake and Clang.",
+          "title": "CPlusPlus CMake Project",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475842153_e676afef2f67934841044fcd676436ca.jpeg",
+          "templateLabel": "C++ CMake Project",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "849bf4f2-8d55-483c-81c4-0bdb5300dff3",
+          "slug": "Visual-Basic",
+          "likeCount": 9,
+          "url": "/@replit/Visual-Basic",
+          "publicForkCount": 0,
+          "runCount": 539,
+          "description": "Visual Basic is a multi-paradigm, object-oriented programming language, implemented on .NET framework.",
+          "title": "Visual Basic",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664551229459_d6726f52b5ca0a5bf2d43f7abe5252a7.jpeg",
+          "templateLabel": "Visual Basic",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "02f097bc-efc4-4e02-bb69-afbb15e8ec09",
+          "slug": "Phaserjs-Game-Starter",
+          "likeCount": 32,
+          "url": "/@templates/Phaserjs-Game-Starter",
+          "publicForkCount": 1,
+          "runCount": 3134,
+          "description": "Created by @ThatSmart | Written in phaser.js, use the arrow keys to control the square.  Add more to this repl to make it a game!",
+          "title": "Phaser.js Game Starter",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1631111105560_fd95afc76346f90dbcb1e628fc9574e9.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1631111166448_c9a6d87869fcea51489a63c1d09dd53a.jpeg",
+          "templateLabel": "Phaser.js Game Starter",
+          "templateCategories": [
+            {
+              "id": 5,
+              "title": "Games"
+            }
+          ]
+        },
+        {
+          "id": "8a7a9cfd-be10-4557-a4dd-a54180c9ce1e",
+          "slug": "C-CMake-Project",
+          "likeCount": 7,
+          "url": "/@replit/C-CMake-Project",
+          "publicForkCount": 1,
+          "runCount": 228,
+          "description": "Low-level and cross-platform imperative language. Compile with CMake and clang",
+          "title": "C CMake Project",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475835022_03dab003aa2236b1a3f44cb52bcbdf04.jpeg",
+          "templateLabel": "C CMake Project",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        },
+        {
+          "id": "9ccf6adc-4726-41f5-a64f-bfaad63bb54f",
+          "slug": "Discordjs-starter",
+          "likeCount": 48,
+          "url": "/@TheDrone7/Discordjs-starter",
+          "publicForkCount": 0,
+          "runCount": 2631,
+          "description": "A basic discord.js starter bot written in typescript. Using discord.js v13",
+          "title": "Discord.js starter",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1647389961513_bd25c8b1258dad3ac7640898c2dec6b9.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1647389877099_b0b1b37c9f7866cdfd853fe671d93515.png",
+          "templateLabel": "Discord.js starter",
+          "templateCategories": [
+            {
+              "id": 8,
+              "title": "Bots"
+            }
+          ]
+        },
+        {
+          "id": "7b548978-0342-4cce-ba17-8e750b9d5e59",
+          "slug": "Processing4",
+          "likeCount": 10,
+          "url": "/@demcrepl/Processing4",
+          "publicForkCount": 1,
+          "runCount": 708,
+          "description": "Processing 4.0 beta 1\n\nProcessing is a flexible software sketchbook and a language for learning how to code within the context of the visual arts. Since 2001, Processing has promoted software literacy within the visual arts and visual literacy within technology. There are tens of thousands of students, artists, designers, researchers, and hobbyists who use Processing for learning and prototyping.",
+          "title": "Processing4",
+          "imageUrl": "https://storage.googleapis.com/replit/images/1629861348792_dcce92ae9b107b0f92b86a7a76c42e8e.png",
+          "iconUrl": "https://storage.googleapis.com/replit/images/1629901785626_dcce92ae9b107b0f92b86a7a76c42e8e.png",
+          "templateLabel": "Processing4",
+          "templateCategories": [
+            {
+              "id": 6,
+              "title": "Graphics"
+            }
+          ]
+        },
+        {
+          "id": "2af209b9-8d26-4a19-96e8-cb3c05e0dcf7",
+          "slug": "Python-Discord-Bot",
+          "likeCount": 37,
+          "url": "/@replit/Python-Discord-Bot",
+          "publicForkCount": 1,
+          "runCount": 3141,
+          "description": "A starting point for build in a Discord bot in Python using the discord.py library.",
+          "title": "Python Discord Bot",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1656097494710_319935ef0f16a1c5d086a1fc13701a2d.png",
+          "templateLabel": "Python Discord Bot",
+          "templateCategories": [
+            {
+              "id": 8,
+              "title": "Bots"
+            }
+          ]
+        },
+        {
+          "id": "0f736f02-e02c-423d-bab3-c22df8be9a43",
+          "slug": "Love2D",
+          "likeCount": 37,
+          "url": "/@replit/Love2D",
+          "publicForkCount": 0,
+          "runCount": 2677,
+          "description": "A free, open-source Lua framework for 2D games",
+          "title": "Love2D",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1631294948521_b6e6db7f318cbb261b8513d3941587a6.svg",
+          "templateLabel": "Love2D",
+          "templateCategories": [
+            {
+              "id": 5,
+              "title": "Games"
+            }
+          ]
+        },
+        {
+          "id": "0a101982-c988-416a-bd6a-6b48e6c72136",
+          "slug": "BiwaScheme",
+          "likeCount": 3,
+          "url": "/@replit/BiwaScheme",
+          "publicForkCount": 0,
+          "runCount": 269,
+          "description": "An elegant dynamic dialect of Lisp.",
+          "title": "BiwaScheme",
+          "imageUrl": null,
+          "iconUrl": "https://storage.googleapis.com/replit/images/1664475828906_220010d6a31926745eda3e0884d38fc7.jpeg",
+          "templateLabel": "BiwaScheme",
+          "templateCategories": [
+            {
+              "id": 2,
+              "title": "Languages"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
