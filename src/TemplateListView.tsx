@@ -1,5 +1,4 @@
-import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
-import { useExec } from "@raycast/utils";
+import { Action, ActionPanel, List } from "@raycast/api";
 import { useEffect, useMemo } from "react";
 import useQuery from "./hooks/useQuery";
 
@@ -27,10 +26,8 @@ const getQuery = (category: number) => {
   );
 };
 
-export default function TemplateList({ category }: { category: number }) {
-
-  const { isLoading, data } = useQuery(getQuery(category))
-
+export default function TemplateListView({ category }: { category: number }) {
+  const { isLoading, data } = useQuery(getQuery(category));
 
   useEffect(() => {
     console.log("DATA", data);

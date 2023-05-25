@@ -1,7 +1,6 @@
 import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
 import { useMemo } from "react";
-import TemplateList from "../TemplateList";
-import { useExec } from "@raycast/utils";
+import TemplateList from "../TemplateListView";
 import useQuery from "../hooks/useQuery";
 
 const CategoryQuery = `
@@ -19,18 +18,19 @@ const CategoryQuery = `
       }
     }
   }
-`
+`;
 
 const CategoryListPage = () => {
   const { push } = useNavigation();
 
-  const { isLoading, data } = useQuery(CategoryQuery)
+  const { isLoading, data } = useQuery(CategoryQuery);
 
   const response = useMemo(() => {
-    if (!isLoading && data){
-    return JSON.parse(data)}
+    if (!isLoading && data) {
+      return JSON.parse(data);
+    }
 
-    return null
+    return null;
   }, [isLoading, data]);
 
   const results = useMemo(() => {
@@ -38,7 +38,6 @@ const CategoryListPage = () => {
     const templateCategories = response.data.templateCategories.results;
     return templateCategories;
   }, [isLoading, response]);
-
 
   return (
     <List isLoading={isLoading}>
