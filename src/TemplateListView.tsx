@@ -1,19 +1,15 @@
 import { Action, ActionPanel, List } from "@raycast/api";
-import { useMemo } from "react";
 import useQuery from "./hooks/useQuery";
 import { TEMPLATES_QUERY } from "./queries";
+import { TemplateReplsForCategory } from "./types";
 
 export default function TemplateListView({ category }: { category: number }) {
-  const { isLoading, data } = useQuery(TEMPLATES_QUERY(category));
+  const { isLoading, data } = useQuery<TemplateReplsForCategory>(TEMPLATES_QUERY(category));
 
-  const results = useMemo(() => {
-    if (!data) return [];
-    const templates = JSON.parse(data).data.templateRepls2.items;
-    return templates;
-  }, [isLoading, data]);
+  const results = data?.templateRepls2.items;
 
   return (
-    <List isLoading={isLoading || !data}>
+    <List isLoading={isLoading || !results}>
       {(results || []).map((item) => (
         <List.Item
           key={item.id}

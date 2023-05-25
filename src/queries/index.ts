@@ -25,6 +25,7 @@ export const TEMPLATES_QUERY = (category: number) => {
       ... on TemplateReplSearchConnection {
         category
         items {
+          id
           title
           imageUrl
           iconUrl

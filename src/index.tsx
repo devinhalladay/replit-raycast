@@ -3,27 +3,20 @@ import { useMemo } from "react";
 import TemplateList from "./TemplateListView";
 import useQuery from "./hooks/useQuery";
 import { CATEGORIES_QUERY } from "./queries";
+import { TemplateCategoriesResults } from "./types";
 
 
 
 const CategoryListView = () => {
   const { push } = useNavigation();
 
-  const { isLoading, data } = useQuery(CATEGORIES_QUERY);
-
-  const response = useMemo(() => {
-    if (!isLoading && data) {
-      return JSON.parse(data);
-    }
-
-    return null;
-  }, [isLoading, data]);
+  const { isLoading, data } = useQuery<TemplateCategoriesResults>(CATEGORIES_QUERY);
 
   const results = useMemo(() => {
-    if (!response) return [];
-    const templateCategories = response.data.templateCategories.results;
+    if (!data) return [];
+    const templateCategories = data.templateCategories.results;
     return templateCategories;
-  }, [isLoading, response]);
+  }, [isLoading, data]);
 
   return (
     <List isLoading={isLoading}>
