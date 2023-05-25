@@ -1,7 +1,6 @@
-import { Action, ActionPanel, Detail, List, useNavigation } from "@raycast/api";
-import { useExec, useFetch } from "@raycast/utils";
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import Root from "./components/Root";
+import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
+import { useExec } from "@raycast/utils";
+import { useEffect, useMemo } from "react";
 
 const getQuery = (category: number) => {
   return (
@@ -50,21 +49,19 @@ export default function TemplateList({ category }: { category: number }) {
   }, [isLoading, data]);
 
   return (
-    <Root>
-      <List isLoading={isLoading || !data}>
-        {(results || []).map((item) => (
-          <List.Item
-            key={item.id}
-            title={item.title}
-            icon={item.iconUrl}
-            actions={
-              <ActionPanel>
-                <Action.OpenInBrowser title={`Create a ${item.title} project`} url={`https://replit.com/${item.url}`} />
-              </ActionPanel>
-            }
-          />
-        ))}
-      </List>
-    </Root>
+    <List isLoading={isLoading || !data}>
+      {(results || []).map((item) => (
+        <List.Item
+          key={item.id}
+          title={item.title}
+          icon={item.iconUrl}
+          actions={
+            <ActionPanel>
+              <Action.OpenInBrowser title={`Create a ${item.title} project`} url={`https://replit.com/${item.url}`} />
+            </ActionPanel>
+          }
+        />
+      ))}
+    </List>
   );
 }
