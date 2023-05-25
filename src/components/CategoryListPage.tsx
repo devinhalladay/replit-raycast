@@ -4,20 +4,7 @@ import TemplateList from "../TemplateList";
 import { useExec } from "@raycast/utils";
 
 const CategoryQuery = `
-  query {
-    templateRepls2(options: { count: 100, category: 10 }) {
-      __typename
-      ... on TemplateReplSearchConnection {
-        category
-        items {
-          title
-          templateCategories {
-            title
-            id
-          }
-        }
-      }
-    }
+  {
     templateCategories {
       __typename
       ... on TemplateCategoriesResults {
@@ -31,7 +18,7 @@ const CategoryQuery = `
       }
     }
   }
-`;
+`
 
 const CategoryListPage = () => {
   const { push } = useNavigation();
@@ -40,22 +27,18 @@ const CategoryListPage = () => {
     `curl 'https://replit.com/graphql' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query": "{templateRepls2(options: {count: 100,category:10}) {__typename ... on TemplateReplSearchConnection {category items {title templateCategories {title id}}}}templateCategories {__typename ... on TemplateCategoriesResults {results {... on TemplateCategory {id title slug}}}}}"}' --compressed`,
     {
       shell: true,
+      keepPreviousData: true,
     }
   );
 
   const response = useMemo(() => JSON.parse(data), [isLoading, data]);
 
   const results = useMemo(() => {
-    // console.log(data);
     if (!response) return [];
     const templateCategories = response.data.templateCategories.results;
     return templateCategories;
   }, [isLoading, response]);
 
-  // useEffect(() => {
-  //   console.log("RESULTS", datum);
-  //   console.log("ERROR", error);
-  // }, [datum, isFetching]);
 
   return (
     <List isLoading={isLoading}>
