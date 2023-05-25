@@ -2,6 +2,7 @@ import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
 import { useMemo } from "react";
 import TemplateList from "../TemplateList";
 import { useExec } from "@raycast/utils";
+import useQuery from "../hooks/useQuery";
 
 const CategoryQuery = `
   {
@@ -23,15 +24,14 @@ const CategoryQuery = `
 const CategoryListPage = () => {
   const { push } = useNavigation();
 
-  const { isLoading, data } = useExec(
-    `curl 'https://replit.com/graphql' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query": "{templateRepls2(options: {count: 100,category:10}) {__typename ... on TemplateReplSearchConnection {category items {title templateCategories {title id}}}}templateCategories {__typename ... on TemplateCategoriesResults {results {... on TemplateCategory {id title slug}}}}}"}' --compressed`,
-    {
-      shell: true,
-      keepPreviousData: true,
-    }
-  );
+  const { isLoading, data } = useQuery(CategoryQuery)
 
-  const response = useMemo(() => JSON.parse(data), [isLoading, data]);
+  const response = useMemo(() => {
+    if (!isLoading && data){
+    return JSON.parse(data)}
+
+    return null
+  }, [isLoading, data]);
 
   const results = useMemo(() => {
     if (!response) return [];

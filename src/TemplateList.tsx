@@ -1,6 +1,7 @@
 import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
 import { useExec } from "@raycast/utils";
 import { useEffect, useMemo } from "react";
+import useQuery from "./hooks/useQuery";
 
 const getQuery = (category: number) => {
   return (
@@ -27,16 +28,9 @@ const getQuery = (category: number) => {
 };
 
 export default function TemplateList({ category }: { category: number }) {
-  const { pop } = useNavigation();
 
-  const { isLoading, data, revalidate } = useExec(
-    `curl 'https://replit.com/graphql' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query":"{templateRepls2(options: { count: 100, category: ${category} }) {  __typename  ... on TemplateReplSearchConnection { category items {      title imageUrl iconUrl url templateCategories { title id } } }}}"}' --compressed`,
-    {
-      shell: true,
-      keepPreviousData: false,
-      stripFinalNewline: true,
-    }
-  );
+  const { isLoading, data } = useQuery(getQuery(category))
+
 
   useEffect(() => {
     console.log("DATA", data);
