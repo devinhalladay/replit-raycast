@@ -2,28 +2,14 @@ import { Action, ActionPanel, List, useNavigation } from "@raycast/api";
 import { useMemo } from "react";
 import TemplateList from "./TemplateListView";
 import useQuery from "./hooks/useQuery";
+import { CATEGORIES_QUERY } from "./queries";
 
-const CategoryQuery = `
-  {
-    templateCategories {
-      __typename
-      ... on TemplateCategoriesResults {
-        results {
-          ... on TemplateCategory {
-            id
-            title
-            slug
-          }
-        }
-      }
-    }
-  }
-`;
+
 
 const CategoryListView = () => {
   const { push } = useNavigation();
 
-  const { isLoading, data } = useQuery(CategoryQuery);
+  const { isLoading, data } = useQuery(CATEGORIES_QUERY);
 
   const response = useMemo(() => {
     if (!isLoading && data) {

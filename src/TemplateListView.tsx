@@ -1,37 +1,10 @@
 import { Action, ActionPanel, List } from "@raycast/api";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import useQuery from "./hooks/useQuery";
-
-const getQuery = (category: number) => {
-  return (
-    `{
-    templateRepls2(options: { count: 100, category:` +
-    category +
-    ` }) {
-      __typename
-      ... on TemplateReplSearchConnection {
-        category
-        items {
-          title
-          imageUrl
-          iconUrl
-          templateCategories {
-            title
-            id
-          }
-        }
-      }
-    }
-  }`
-  );
-};
+import { TEMPLATES_QUERY } from "./queries";
 
 export default function TemplateListView({ category }: { category: number }) {
-  const { isLoading, data } = useQuery(getQuery(category));
-
-  useEffect(() => {
-    console.log("DATA", data);
-  }, [data]);
+  const { isLoading, data } = useQuery(TEMPLATES_QUERY(category));
 
   const results = useMemo(() => {
     if (!data) return [];
