@@ -1,5 +1,7 @@
 import { MutatePromise, useExec } from "@raycast/utils";
 
+const GRAPHQL_ENDPOINT = "https://replit.com/graphql"
+
 const useQuery = <T>(query: string): {
   data?: T | undefined;
   error?: Error | undefined;
@@ -8,7 +10,7 @@ const useQuery = <T>(query: string): {
   revalidate: () => void;
 } => {
   const res = useExec(
-    `curl 'https://replit.com/graphql' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query": "${query.replace(
+    `curl '${GRAPHQL_ENDPOINT}' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query": "${query.replace(
       /\n/g,
       ""
     )}"}' --compressed`,
@@ -19,7 +21,8 @@ const useQuery = <T>(query: string): {
   );
 
   let values = {
-    ...res
+    ...res,
+    data: undefined
   };
 
   // we want to return the data.data and parse the json

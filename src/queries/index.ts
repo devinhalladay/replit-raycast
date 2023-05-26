@@ -8,6 +8,8 @@ export const CATEGORIES_QUERY = `
             id
             title
             slug
+            imageUrl
+            description
           }
         }
       }
@@ -28,10 +30,21 @@ export const TEMPLATES_QUERY = (category: number) => {
           id
           title
           imageUrl
+          description
           iconUrl
+          tags {
+            id
+          }
+          likeCount
+          url
+          publicForkCount
           templateCategories {
             title
             id
+          }
+          user {
+            username
+            image
           }
         }
       }

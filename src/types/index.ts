@@ -15,6 +15,8 @@ export const headers = {
 export type TemplateCategory = {
   title: string;
   id: number;
+  imageUrl: string;
+  description: string;
 };
 
 export type TemplateCategoriesResults = {
@@ -31,6 +33,17 @@ export type TemplateRepl = {
   imageUrl: string | null;
   iconUrl: string;
   templateCategories: TemplateCategory[];
+  description: string;
+  url: string;
+  user: {
+    image: string;
+    username: string;
+  }
+  likeCount: number;
+  publicForkCount: number;
+  tags: {
+    id: string;
+  }[] | null;
 };
 
 export type TemplateReplsForCategory = {
