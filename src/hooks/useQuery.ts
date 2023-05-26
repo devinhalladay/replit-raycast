@@ -1,8 +1,10 @@
 import { MutatePromise, useExec } from "@raycast/utils";
 
-const GRAPHQL_ENDPOINT = "https://replit.com/graphql"
+const GRAPHQL_ENDPOINT = "https://replit.com/graphql";
 
-const useQuery = <T>(query: string): {
+const useQuery = <T>(
+  query: string
+): {
   data?: T | undefined;
   error?: Error | undefined;
   isLoading: boolean;
@@ -29,7 +31,7 @@ const useQuery = <T>(query: string): {
   if (res.data) {
     const data = JSON.parse(res.data);
     values = { ...values, data: data.data };
-  } 
+  }
 
   return values;
 };

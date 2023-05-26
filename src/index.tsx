@@ -5,8 +5,6 @@ import useQuery from "./hooks/useQuery";
 import { CATEGORIES_QUERY } from "./queries";
 import { TemplateCategoriesResults } from "./types";
 
-
-
 const CategoryListView = () => {
   const { push } = useNavigation();
 
@@ -19,13 +17,21 @@ const CategoryListView = () => {
   }, [isLoading, data]);
 
   return (
-    <Grid isLoading={isLoading} navigationTitle="Template Categories" aspectRatio="16/9" inset={Grid.Inset.Zero} fit={Grid.Fit.Fill} columns={3} searchBarPlaceholder="Search categories…">
+    <Grid
+      isLoading={isLoading}
+      navigationTitle="Template Categories"
+      aspectRatio="16/9"
+      inset={Grid.Inset.Zero}
+      fit={Grid.Fit.Fill}
+      columns={3}
+      searchBarPlaceholder="Search categories…"
+    >
       {(results || []).map((item) => (
         <Grid.Item
-        subtitle={item.description}
+          subtitle={item.description}
           key={item.id}
           title={item.title}
-          content={'https://replit.com' + item.imageUrl}
+          content={"https://replit.com" + item.imageUrl}
           actions={
             <ActionPanel>
               <Action

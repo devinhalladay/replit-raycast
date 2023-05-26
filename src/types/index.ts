@@ -38,12 +38,14 @@ export type TemplateRepl = {
   user: {
     image: string;
     username: string;
-  }
+  };
   likeCount: number;
   publicForkCount: number;
-  tags: {
-    id: string;
-  }[] | null;
+  tags:
+    | {
+        id: string;
+      }[]
+    | null;
 };
 
 export type TemplateReplsForCategory = {

@@ -42,8 +42,16 @@ export default function TemplateListView({ category, title }: { category: number
           ]}
           actions={
             <ActionPanel>
-              <Action.OpenInBrowser title={`Fork Template`} url={`https://replit.com/new?template=${item.id}`} icon={Icon.Shuffle} />
-              <Action.OpenInBrowser title={`View cover page`} url={`https://replit.com/${item.url}`} icon={Icon.Globe} />
+              <Action.OpenInBrowser
+                title={`Fork Template`}
+                url={`https://replit.com/new?template=${item.id}`}
+                icon={Icon.Shuffle}
+              />
+              <Action.OpenInBrowser
+                title={`View cover page`}
+                url={`https://replit.com/${item.url}`}
+                icon={Icon.Globe}
+              />
             </ActionPanel>
           }
           detail={
