@@ -33,7 +33,7 @@ export default function Command() {
   //     "content-type": "application/json",
   //     "x-requested-with": "wow",
   //     cookie:
-  //       "Oem5S_GGTXk1nNLNlgWrFw9pp.Y5w_u6Etm093_6DSg-1685064633-0-AYJEHOBeuO+ctMraK90jsdR3Sbhgj6voXwqWc5pbqdpXzikZDP9FV/f6mb5f3wOtHy3LPUf968s3yzYOUVktfqE=",
+  //       "<cookie here>",
   //     origin: "https://replit.com",
   //     referer: "https://replit.com/graphql",
   //   },
