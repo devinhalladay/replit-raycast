@@ -78,7 +78,7 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
                 icon={Icon.AddPerson}
               />
             ) : null}
-              <Action.OpenInBrowser title="View Repl Analytics" url={`https://replit.com/${searchResult.analyticsUrl}`} icon={Icon.LineChart} />
+            <Action.OpenInBrowser title="View Repl Analytics" url={`https://replit.com/${searchResult.analyticsUrl}`} icon={Icon.LineChart} />
           </ActionPanel.Section>
         </ActionPanel>
       }
