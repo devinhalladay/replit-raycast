@@ -1,32 +1,23 @@
-import { Action, ActionPanel, Detail, Icon, Image, List } from "@raycast/api";
+import { Action, ActionPanel, Detail, Icon, Image, LaunchType, List, launchCommand } from "@raycast/api";
 import { useAI, useFetch } from "@raycast/utils";
 import { useEffect, useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 import { AI_TEMPLATES_STUB_QUERY, SEARCH_TEMPLATES_QUERY } from "./queries";
-import { launchCommand, LaunchType } from "@raycast/api";
+import { TemplateRepl, TemplateStatus } from "./types";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
   const [searchTerms, setSearchterms] = useState<Array<string>>([]);
+  const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>(TemplateStatus.Official);
 
   const { connectSid } = useCurrentUser();
 
   const {
-    data: templatesData,
-    isLoading: loadingTemplates,
-    error: templatesError,
+    data: templatesManifest,
+    isLoading: loadingTemplatesManifest,
+    error: templatesManifestError,
   } = useFetch("https://replit.com/graphql", {
-    parseResponse: async (response) => {
-      const res = await response.json();
-      if (res.data?.templateRepls2?.items) {
-        return res.data.templateRepls2.items.map((item: any) => ({
-          title: item.title,
-          description: item.description,
-        }));
-      }
-
-      return [];
-    },
+    parseResponse: parseTemplatesManifestResponse,
     headers: {
       accept: "*/*",
       "content-type": "application/json",
@@ -44,17 +35,21 @@ export default function Command() {
     }),
   });
 
-  const { data, isLoading } = useAI(
+  const {
+    data: keywordResponse,
+    isLoading: loadingKeywordResponse,
+    error: keywordResponseError,
+  } = useAI(
     `
     You are helping a user choose a template for a coding project. The user's query is ${searchText}. Respond with a valid JSON Javascript array of five relevant search terms that may help the user find the right template according to their query intent. Do not include the word "template" in your suggested terms.
 
     Example response: ["OpenAI", "Chatbot", "Python", "Data Science", "GPT-3"]
 
     You can use the following data to help you identify possible search terms from titles and descriptions. 
-    ${JSON.stringify(templatesData)}
+    ${JSON.stringify(templatesManifest)}
   `,
     {
-      execute: templatesData && searchText.length > 0,
+      execute: templatesManifest && searchText.length > 0,
       model: "gpt-3.5-turbo",
       creativity: "low",
       stream: false,
@@ -62,28 +57,18 @@ export default function Command() {
   );
 
   useEffect(() => {
-    if (data) {
-      // console.log(typeof data, JSON.parse(data));
-      setSearchterms(JSON.parse(data));
+    if (keywordResponse) {
+      setSearchterms(JSON.parse(keywordResponse));
     }
-  }, [data]);
+  }, [keywordResponse]);
 
   const {
-    data: choices,
-    isLoading: loadingchoices,
-    error: choiceserror,
+    data: templateResults,
+    isLoading: loadingTemplateResults,
+    error: templateResultsError,
   } = useFetch("https://replit.com/graphql", {
     execute: searchTerms && searchTerms.length > 1,
-    parseResponse: async (response) => {
-      const res = await response.json();
-      console.log(res);
-
-      if (res.data?.search?.templateResults?.results?.items) {
-        return res.data.search.templateResults.results.items;
-      }
-
-      return [];
-    },
+    parseResponse: parseTemplateResultsResponse,
     headers: {
       accept: "*/*",
       "content-type": "application/json",
@@ -100,18 +85,55 @@ export default function Command() {
       variables: {
         query: searchTerms.join(" "),
         categories: ["Templates"],
+        status: selectedStatus,
       },
       query: SEARCH_TEMPLATES_QUERY,
     }),
   });
 
-  if (templatesError) {
-    return <Detail markdown={`Error: ${templatesError?.message}. ${templatesError}`} />;
+  if (templatesManifestError) {
+    console.log(templatesManifestError);
+
+    let markdown = "Could not fetch template index. Please try again.";
+
+    if (templatesManifestError.message.includes("429")) {
+      markdown = "You have exceeded the rate limit for this command. Please try again later.";
+    }
+
+    return <Detail markdown={markdown} />;
+  }
+
+  if (keywordResponseError) {
+    console.log(keywordResponseError);
+
+    return <Detail markdown={`The AI generated unusable results. Please try again.`} />;
+  }
+
+  if (templateResultsError) {
+    console.log(templateResultsError);
+
+    return <Detail markdown={`Could not fetch templates for your search. Please try again.`} />;
   }
 
   return (
-    <List onSearchTextChange={setSearchText} throttle isLoading={loadingchoices} isShowingDetail={!!choices?.length}>
-      {!choices?.length ? (
+    <List
+      onSearchTextChange={setSearchText}
+      throttle
+      isLoading={loadingTemplateResults || loadingKeywordResponse}
+      isShowingDetail={!!templateResults?.length}
+      searchBarAccessory={
+        <List.Dropdown
+          tooltip="hi"
+          onChange={(value) => setSelectedStatus(value as TemplateStatus)}
+          defaultValue={selectedStatus}
+        >
+          <List.Dropdown.Item title="All" value={TemplateStatus.All} />
+          <List.Dropdown.Item title="Official" value={TemplateStatus.Official} />
+          <List.Dropdown.Item title="Community" value={TemplateStatus.Community} />
+        </List.Dropdown>
+      }
+    >
+      {!templateResults?.length ? (
         <List.EmptyView
           title="Ask AI for a Template"
           description="Describe your project idea and Raycast AI will help you find a relevant template to get started with."
@@ -128,7 +150,7 @@ export default function Command() {
           }
         />
       ) : null}
-      {choices?.map((choice: any) => (
+      {templateResults?.map((choice: any) => (
         <List.Item
           icon={{
             source: choice.iconUrl,
@@ -183,3 +205,27 @@ export default function Command() {
     </List>
   );
 }
+
+const parseTemplatesManifestResponse = async (response: Response) => {
+  const res = await response.json();
+  if (res.data?.templateRepls2?.items) {
+    return res.data.templateRepls2.items.map((item: any) => ({
+      title: item.title,
+      description: item.description,
+    }));
+  }
+
+  return [];
+};
+
+const parseTemplateResultsResponse = async (response: Response) => {
+  const res = await response.json();
+  if (res.data?.search?.templateResults?.results?.items) {
+    // Sort the results by fork count
+    return res.data.search.templateResults.results.items.sort(
+      (a: TemplateRepl, b: TemplateRepl) => b.publicForkCount - a.publicForkCount
+    );
+  }
+
+  return [];
+};

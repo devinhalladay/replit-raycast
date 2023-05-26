@@ -107,10 +107,15 @@ export const AI_TEMPLATES_STUB_QUERY = `
 `;
 
 export const SEARCH_TEMPLATES_QUERY = `
-  query SearchTemplates($query: String!, $categories: [SearchQueryCategory!]!) {
+  query SearchTemplates($query: String!, $categories: [SearchQueryCategory!]!, $status: SearchQueryTemplateStatus!) {
     search(options: {
       query: $query,
       categories: $categories,
+      categorySettings: {
+        templates: {
+          status: $status
+        }
+      }
     }) {
       __typename
       ... on SearchQueryResults {

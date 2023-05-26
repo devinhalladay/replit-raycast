@@ -6,6 +6,12 @@ export type TemplateCategory = {
   description: string;
 };
 
+export enum TemplateStatus {
+  All = "All",
+  Official = "Official",
+  Community = "Community",
+}
+
 // results of the categories graphql query
 export type TemplateCategoriesResults = {
   templateCategories: {
@@ -46,7 +52,7 @@ export type TemplateReplsForCategory = {
 };
 
 // a single search result
-export interface SearchResult {
+export type SearchResult = {
   title: string;
   description: string;
   iconUrl: string;
