@@ -54,3 +54,34 @@ export const TEMPLATES_QUERY = (category: number) => {
   }`
   );
 };
+
+export const FIND_REPLS_QUERY = `
+query ReplSearch($q: String!, $ownerId: Int!) {
+  search(
+    options: {
+      categories: Repls
+      query: $q
+      categorySettings: { repls: { ownerId: $ownerId } }
+    }
+  ) {
+    __typename
+    ... on UnauthorizedError {
+      message
+    }
+    ... on SearchQueryResults {
+      replResults {
+        results {
+          items {
+            id
+            title
+            slug
+            description
+            iconUrl
+            url
+          }
+        }
+      }
+    }
+  }
+}
+`

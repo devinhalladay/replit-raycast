@@ -2,6 +2,7 @@ import { Action, ActionPanel, Detail, List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
+import { FIND_REPLS_QUERY } from "./queries";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
@@ -28,8 +29,7 @@ export default function Command() {
         q: searchText,
         ownerId: userId,
       },
-      query:
-        "query ReplSearch($q: String!, $ownerId: Int!) {\n  search(\n    options: {categories: Repls, query: $q, categorySettings: {repls: {ownerId: $ownerId}}}\n  ) {__typename\n ... on UnauthorizedError {message} \n    ... on SearchQueryResults {\n      replResults {\n        results {\n          items {\n            id\n            title\n            slug\n            description\n            iconUrl\n  url\n          }\n        }\n      }\n    }\n  }\n}\n",
+      query: FIND_REPLS_QUERY
     }),
   });
 
