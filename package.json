@@ -18,6 +18,13 @@
       "subtitle": "Replit",
       "description": "Create a new Repl with templates for any language or framework.",
       "mode": "view"
+    },
+    {
+      "name": "findRepl",
+      "title": "Find a Repl",
+      "subtitle": "Replit",
+      "description": "Find a Repl by its name or description",
+      "mode": "view"
     }
   ],
   "dependencies": {
