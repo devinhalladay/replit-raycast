@@ -40,8 +40,7 @@ export default function Command() {
     isLoading: loadingKeywordResponse,
     error: keywordResponseError,
   } = useAI(
-    `
-    Your goal is to help a user choose a Replit template for a coding project. You need to infer keywords relating to their intent and the possible technologies it can be built with. Respond with a valid JSON Javascript array of five relevant search terms that may help the user find the right template according to their query intent. Do not include the word "template" in your suggested terms.
+    `Your goal is to help a user choose a Replit template for a coding project. You need to infer keywords relating to their intent and the possible technologies it can be built with. Respond with a valid JSON Javascript array of five relevant search terms that may help the user find the right template according to their query intent. Do not include the word "template" in your suggested terms.
     
     Project idea: ${searchText}.
     Example response: ["OpenAI", "Chatbot", "Python", "Data Science", "GPT-3"]
@@ -107,7 +106,7 @@ export default function Command() {
     }
 
     return <Detail markdown={markdown} />;
-  }
+  };
 
   if (keywordResponseError) {
     console.log(keywordResponseError);
