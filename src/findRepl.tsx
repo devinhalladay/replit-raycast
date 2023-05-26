@@ -1,16 +1,12 @@
-import { ActionPanel, Action, List, Detail } from "@raycast/api";
+import { Action, ActionPanel, Detail, List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
-import { useEffect, useMemo, useState } from "react";
-import useConnectSid from "./hooks/useConnectSid";
-import { getPreferenceValues } from "@raycast/api";
-import { LocalStorage } from "@raycast/api";
+import { useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
-  const connectSid = useConnectSid();
 
-  const userId = useCurrentUser();
+  const {userId, connectSid} = useCurrentUser();
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,

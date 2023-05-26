@@ -4,8 +4,11 @@ import { LocalStorage } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { parseFetchResponse } from "../findRepl";
 
-const useCurrentUser = (): number => {
-  const [userId, setUserId] = useState<number | undefined>(undefined);
+const useCurrentUser = (): {
+  userId: number | null;
+  connectSid: string | undefined;
+} => {
+  const [userId, setUserId] = useState<number | null>(null);
   const [loadingLocal, setLoadingLocal] = useState(true);
 
   const connectSid = useConnectSid();
@@ -15,7 +18,7 @@ const useCurrentUser = (): number => {
 
     const getStorage = async () => {
       const replitUserId = await LocalStorage.getItem<number>("replit-user-id");
-      setUserId(replitUserId);
+      setUserId(replitUserId ?? null);
       setLoadingLocal(false);
     }
 
@@ -53,10 +56,16 @@ const useCurrentUser = (): number => {
     onData: async (data) => {
       await LocalStorage.setItem("replit-user-id", data);
       setUserId(data);
+    },
+    onError: (error) => {
+      console.error(error);
     }
   });
 
-  return data;
+  return {
+    userId: data,
+    connectSid
+  };
 }
 
 export default useCurrentUser;
