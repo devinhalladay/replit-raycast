@@ -18,6 +18,13 @@
       "subtitle": "Replit",
       "description": "Create a new Repl with templates for any language or framework.",
       "mode": "view"
+    },
+    {
+      "name": "search",
+      "title": "Search Repls",
+      "subtitle": "Replit",
+      "description": "Search for Repls on Replit.com.",
+      "mode": "view"
     }
   ],
   "dependencies": {

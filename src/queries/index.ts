@@ -54,3 +54,36 @@ export const TEMPLATES_QUERY = (category: number) => {
   }`
   );
 };
+
+
+export const SEARCH_QUERY = ({searchText, ownerId}: {
+  searchText: string,
+  ownerId: number
+}) => {
+  return `
+  query ReplSearch {
+    search(
+      options: {
+        categories: Repls
+        query: "${searchText}"
+        categorySettings: { repls: { ownerId: 4428639 } }
+      }
+    ) {
+      ... on SearchQueryResults {
+        replResults {
+          results {
+            items {
+              id
+              title
+              slug
+              description
+              iconUrl
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+}
