@@ -41,11 +41,12 @@ export default function Command() {
     error: keywordResponseError,
   } = useAI(
     `
-    You are helping a user choose a template for a coding project. The user's query is ${searchText}. Respond with a valid JSON Javascript array of five relevant search terms that may help the user find the right template according to their query intent. Do not include the word "template" in your suggested terms.
-
+    Your goal is to help a user choose a Replit template for a coding project. You need to infer keywords relating to their intent and the possible technologies it can be built with. Respond with a valid JSON Javascript array of five relevant search terms that may help the user find the right template according to their query intent. Do not include the word "template" in your suggested terms.
+    
+    Project idea: ${searchText}.
     Example response: ["OpenAI", "Chatbot", "Python", "Data Science", "GPT-3"]
 
-    You can use the following data to help you identify possible search terms from titles and descriptions. 
+    The following data can be used to help you, but feel free to use any other keywords you think are relevant that are not included here:
     ${JSON.stringify(templatesManifest)}
   `,
     {
@@ -58,7 +59,12 @@ export default function Command() {
 
   useEffect(() => {
     if (keywordResponse) {
-      setSearchterms(JSON.parse(keywordResponse));
+      try {
+        const json = JSON.parse(keywordResponse)
+        setSearchterms(json);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }, [keywordResponse]);
 
@@ -223,7 +229,7 @@ const parseTemplateResultsResponse = async (response: Response) => {
   if (res.data?.search?.templateResults?.results?.items) {
     // Sort the results by fork count
     return res.data.search.templateResults.results.items.sort(
-      (a: TemplateRepl, b: TemplateRepl) => b.publicForkCount - a.publicForkCount
+      (a: TemplateRepl, b: TemplateRepl) => b.likeCount - a.likeCount
     );
   }
 
