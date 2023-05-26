@@ -21,16 +21,16 @@
     },
     {
       "name": "findRepl",
-      "title": "Find a Repl",
+      "title": "Search My Repls",
       "subtitle": "Replit",
       "description": "Find a Repl by its name or description",
       "mode": "view"
     },
     {
       "name": "askTemplate",
-      "title": "Ask Templates",
+      "title": "AI Template Suggestion",
       "subtitle": "Replit",
-      "description": "Ask for a template to create a Repl",
+      "description": "Describe your project idea and find a template to get started.",
       "mode": "view"
     }
   ],
