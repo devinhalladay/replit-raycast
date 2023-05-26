@@ -8,3 +8,6 @@
 .clj-kondo/
 .lsp/
 *.log
+
+# Raycast specific files
+raycast-env.d.ts
