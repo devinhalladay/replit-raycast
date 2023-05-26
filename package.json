@@ -2,10 +2,10 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "replit",
   "title": "Replit",
-  "owner": "Replit",
+  "owner": "replit",
   "description": "Quickly create a Replit coding project in any programming language or framework.",
   "icon": "logo.png",
-  "author": "devinhalladay",
+  "author": "theflowingsky",
   "categories": [
     "Developer Tools",
     "Productivity"
