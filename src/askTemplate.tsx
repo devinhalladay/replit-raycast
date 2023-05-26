@@ -155,7 +155,7 @@ export default function Command() {
           }
         />
       ) : null}
-      {templateResults?.map((choice: any) => (
+      {templateResults?.map((choice: TemplateRepl) => (
         <List.Item
           icon={{
             source: choice.iconUrl,
