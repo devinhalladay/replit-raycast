@@ -1,12 +1,44 @@
 import { Action, ActionPanel, Color, Icon, Image, List, environment } from "@raycast/api";
 import useQuery from "./hooks/useQuery";
-import { TEMPLATES_QUERY } from "./queries";
-import { TemplateReplsForCategory } from "./types";
+import { CATEGORIES_QUERY, TEMPLATES_QUERY } from "./queries";
+import { TemplateCategoriesResults, TemplateReplsForCategory } from "./types";
+import { useMemo, useState } from "react";
+
+function CategoryDropdown(props: { category: number; onChange: (newValue: string) => void }) {
+  const { category, onChange } = props;
+
+  const { isLoading, data } = useQuery<TemplateCategoriesResults>(CATEGORIES_QUERY);
+
+  const results = data?.templateCategories.results;
+
+  return (
+    <List.Dropdown
+      tooltip="Select Category"
+      onChange={(newValue) => {
+        onChange(newValue);
+      }}
+      defaultValue={category.toString()}
+      isLoading={isLoading || !results}
+    >
+      <List.Dropdown.Section title="Template Categories">
+        {results?.map((result) => (
+          <List.Dropdown.Item key={result.id} title={result.title} value={result.id.toString()} />
+          ))}
+      </List.Dropdown.Section>
+    </List.Dropdown>
+  );
+}
 
 export default function TemplateListView({ category, title }: { category: number; title: string }) {
-  const { isLoading, data } = useQuery<TemplateReplsForCategory>(TEMPLATES_QUERY(category));
+  const [selectedCategory, setCategory] = useState(category);
 
-  const results = data?.templateRepls2.items;
+  const { isLoading, data } = useQuery<TemplateReplsForCategory>(TEMPLATES_QUERY(selectedCategory));
+
+  const results = useMemo(() => data?.templateRepls2.items, [isLoading, data])
+
+  const handleChange = (newValue: string) => {
+    setCategory(parseInt(newValue));
+  };
 
   return (
     <List
@@ -20,6 +52,7 @@ export default function TemplateListView({ category, title }: { category: number
           ? "Search frameworks…"
           : "Search templates…"
       }
+      searchBarAccessory={<CategoryDropdown category={category} onChange={handleChange} />}
     >
       {(results || []).map((item) => (
         <List.Item
@@ -85,6 +118,7 @@ export default function TemplateListView({ category, title }: { category: number
               }
             />
           }
+          
         />
       ))}
     </List>

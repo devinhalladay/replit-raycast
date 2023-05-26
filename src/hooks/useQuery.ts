@@ -18,7 +18,8 @@ const useQuery = <T>(
     )}"}' --compressed`,
     {
       shell: true,
-      keepPreviousData: true
+      keepPreviousData: true,
+      // execute: false
     }
   );
 
