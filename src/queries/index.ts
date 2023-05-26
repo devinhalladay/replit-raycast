@@ -1,3 +1,4 @@
+// Get all template categories
 export const CATEGORIES_QUERY = `
   {
     templateCategories {
@@ -17,6 +18,7 @@ export const CATEGORIES_QUERY = `
   }
 `;
 
+// Get all templates for a category by its ID
 export const TEMPLATES_QUERY = (category: number) => {
   return (
     `{

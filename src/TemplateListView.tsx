@@ -1,8 +1,8 @@
-import { Action, ActionPanel, Color, Icon, Image, List, environment } from "@raycast/api";
+import { Action, ActionPanel, Color, Icon, Image, List } from "@raycast/api";
+import { useMemo, useState } from "react";
 import useQuery from "./hooks/useQuery";
 import { CATEGORIES_QUERY, TEMPLATES_QUERY } from "./queries";
 import { TemplateCategoriesResults, TemplateReplsForCategory } from "./types";
-import { useMemo, useState } from "react";
 
 function CategoryDropdown(props: { category: number; onChange: (newValue: string) => void }) {
   const { category, onChange } = props;
@@ -23,7 +23,7 @@ function CategoryDropdown(props: { category: number; onChange: (newValue: string
       <List.Dropdown.Section title="Template Categories">
         {results?.map((result) => (
           <List.Dropdown.Item key={result.id} title={result.title} value={result.id.toString()} />
-          ))}
+        ))}
       </List.Dropdown.Section>
     </List.Dropdown>
   );
@@ -34,7 +34,7 @@ export default function TemplateListView({ category, title }: { category: number
 
   const { isLoading, data } = useQuery<TemplateReplsForCategory>(TEMPLATES_QUERY(selectedCategory));
 
-  const results = useMemo(() => data?.templateRepls2.items, [isLoading, data])
+  const results = useMemo(() => data?.templateRepls2.items, [isLoading, data]);
 
   const handleChange = (newValue: string) => {
     setCategory(parseInt(newValue));
@@ -118,7 +118,6 @@ export default function TemplateListView({ category, title }: { category: number
               }
             />
           }
-          
         />
       ))}
     </List>

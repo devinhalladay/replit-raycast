@@ -11,15 +11,15 @@ const useQuery = <T>(
   mutate: MutatePromise<string | undefined, string | undefined, any>;
   revalidate: () => void;
 } => {
+  // For unknown reasons all fetch requests, including Raycast's useFetch, are blocked by Cloudflare and Replit's GraphQL API. So we're using curl instead, because it appears to work.
   const res = useExec(
     `curl '${GRAPHQL_ENDPOINT}' -H 'Accept-Encoding: gzip, deflate' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: https://replit.com' -H 'x-requested-with: wow' --data-binary '{"query": "${query.replace(
-      /\n/g,
+      /\n/g, // Remove newlines because they break the curl command
       ""
     )}"}' --compressed`,
     {
       shell: true,
-      keepPreviousData: true,
-      // execute: false
+      keepPreviousData: true
     }
   );
 
@@ -28,7 +28,7 @@ const useQuery = <T>(
     data: undefined
   };
 
-  // we want to return the data.data and parse the json
+  // Returning the parsed JSON so it's faster to work with
   if (res.data) {
     const data = JSON.parse(res.data);
     values = { ...values, data: data.data };
