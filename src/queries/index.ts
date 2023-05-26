@@ -86,4 +86,60 @@ query ReplSearch($q: String!, $ownerId: Int!) {
     }
   }
 }
-`
+`;
+
+// AI queries
+export const AI_TEMPLATES_STUB_QUERY = `
+  query TemplateRepls {
+    templateRepls2(options: { count: 500 }) {
+      __typename
+      ... on TemplateReplSearchConnection {
+        category
+        items {
+          ... on Repl {
+            title
+            description
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const SEARCH_TEMPLATES_QUERY = `
+  query SearchTemplates($query: String!, $categories: [SearchQueryCategory!]!) {
+    search(options: {
+      query: $query,
+      categories: $categories,
+    }) {
+      __typename
+      ... on SearchQueryResults {
+        templateResults {
+          results {
+            items {
+              id
+          title
+          imageUrl
+          description
+          iconUrl
+          tags {
+            id
+          }
+          likeCount
+          url
+          publicForkCount
+          templateCategories {
+            title
+            id
+          }
+          user {
+            username
+            image
+          }
+            }
+          }
+        }
+      }
+    }
+  }   
+  `

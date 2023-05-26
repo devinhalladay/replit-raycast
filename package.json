@@ -28,7 +28,7 @@
     },
     {
       "name": "askTemplate",
-      "title": "AI Template Suggestion",
+      "title": "AI Template Suggestion (Beta)",
       "subtitle": "Replit",
       "description": "Describe your project idea and find a template to get started.",
       "mode": "view"
