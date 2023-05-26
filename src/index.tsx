@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Grid, useNavigation } from "@raycast/api";
+import { Action, ActionPanel, Grid, Icon, useNavigation } from "@raycast/api";
 import { useMemo } from "react";
 import TemplateList from "./TemplateListView";
 import useQuery from "./hooks/useQuery";
@@ -31,6 +31,7 @@ const CategoryListView = () => {
               <Action
                 title="View templates"
                 onAction={() => push(<TemplateList category={item.id} title={item.title} key={Math.random()} />)}
+                icon={Icon.List}
               />
             </ActionPanel>
           }

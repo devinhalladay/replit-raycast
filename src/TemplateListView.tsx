@@ -3,7 +3,7 @@ import useQuery from "./hooks/useQuery";
 import { TEMPLATES_QUERY } from "./queries";
 import { TemplateReplsForCategory } from "./types";
 
-export default function TemplateListView({ category, title }: { category: number, title: string }) {
+export default function TemplateListView({ category, title }: { category: number; title: string }) {
   const { isLoading, data } = useQuery<TemplateReplsForCategory>(TEMPLATES_QUERY(category));
 
   const results = data?.templateRepls2.items;
@@ -14,7 +14,11 @@ export default function TemplateListView({ category, title }: { category: number
       isShowingDetail
       navigationTitle={`${title}`}
       searchBarPlaceholder={
-        title === "Languages" ? "Search languages…" : title === "Frameworks" ? "Search frameworks…" : "Search templates…"
+        title === "Languages"
+          ? "Search languages…"
+          : title === "Frameworks"
+          ? "Search frameworks…"
+          : "Search templates…"
       }
     >
       {(results || []).map((item) => (
@@ -23,7 +27,7 @@ export default function TemplateListView({ category, title }: { category: number
           title={item.title}
           icon={{
             source: item.iconUrl,
-            mask: Image.Mask.RoundedRectangle
+            mask: Image.Mask.RoundedRectangle,
           }}
           accessories={[
             item.user.username === "replit"
@@ -38,8 +42,8 @@ export default function TemplateListView({ category, title }: { category: number
           ]}
           actions={
             <ActionPanel>
-              <Action.OpenInBrowser title={`Fork Template`} url={`https://replit.com/new?template=${item.id}`} />
-              <Action.OpenInBrowser title={`View cover page`} url={`https://replit.com/${item.url}`} />
+              <Action.OpenInBrowser title={`Fork Template`} url={`https://replit.com/new?template=${item.id}`} icon={Icon.Shuffle} />
+              <Action.OpenInBrowser title={`View cover page`} url={`https://replit.com/${item.url}`} icon={Icon.Globe} />
             </ActionPanel>
           }
           detail={
