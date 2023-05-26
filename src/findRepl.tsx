@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Detail, List } from "@raycast/api";
+import { Action, ActionPanel, Color, Detail, Icon, List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
@@ -40,6 +40,16 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading} onSearchTextChange={setSearchText} searchBarPlaceholder="Search repls..." throttle>
+      {searchText.length === 0 && !isLoading ? (
+        <List.EmptyView
+          title="Search your Repls"
+          description="Find any Repl created by your account."
+          icon={{
+            source: Icon.MagnifyingGlass,
+            tintColor: Color.Blue,
+          }}
+        />
+      ) : null}
       <List.Section title="Results" subtitle={data?.length + ""}>
         {data?.map((searchResult) => (
           <SearchListItem key={searchResult.title} searchResult={searchResult} />
@@ -50,6 +60,7 @@ export default function Command() {
 }
 
 function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
+  console.log(searchResult);
   return (
     <List.Item
       title={searchResult.title}
@@ -58,7 +69,16 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
       actions={
         <ActionPanel>
           <ActionPanel.Section>
-            <Action.OpenInBrowser title="Open in Browser" url={`https://replit.com/${searchResult.url}`} />
+            <Action.OpenInBrowser title="Open Workspace" url={`https://replit.com/${searchResult.url}`} icon={Icon.Code} />
+            <Action.OpenInBrowser title="Open Cover Page" url={`https://replit.com/${searchResult.url}?v=1`} icon={Icon.Eye} />
+            {searchResult.inviteUrl !== null ? (
+              <Action.CopyToClipboard
+                title="Copy Invite Link"
+                content={`https://replit.com/${searchResult.inviteUrl}`}
+                icon={Icon.AddPerson}
+              />
+            ) : null}
+              <Action.OpenInBrowser title="View Repl Analytics" url={`https://replit.com/${searchResult.analyticsUrl}`} icon={Icon.LineChart} />
           </ActionPanel.Section>
         </ActionPanel>
       }
@@ -72,11 +92,13 @@ export async function parseFetchResponse(response: Response): Promise<SearchResu
   console.log(res);
 
   if (res?.data?.search?.replResults?.results?.items) {
-    return res.data.search.replResults.results.items.map((item: any) => ({
+    return res.data.search.replResults.results.items.map((item: SearchResult) => ({
       title: item.title,
       description: item.description,
       iconUrl: item.iconUrl,
       url: item.url,
+      inviteUrl: item.inviteUrl,
+      analyticsUrl: item.analyticsUrl,
     }));
   }
 

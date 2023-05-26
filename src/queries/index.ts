@@ -78,6 +78,8 @@ query ReplSearch($q: String!, $ownerId: Int!) {
             description
             iconUrl
             url
+            inviteUrl
+            analyticsUrl
           }
         }
       }

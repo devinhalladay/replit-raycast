@@ -51,6 +51,8 @@ export interface SearchResult {
   description: string;
   iconUrl: string;
   url: string;
+  inviteUrl: string | null;
+  analyticsUrl: string;
 }
 
 export type SearchResultsResult = {
