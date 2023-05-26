@@ -3,6 +3,7 @@ import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 import { FIND_REPLS_QUERY } from "./queries";
+import { SearchResult } from "./types";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
@@ -40,7 +41,7 @@ export default function Command() {
   return (
     <List isLoading={isLoading} onSearchTextChange={setSearchText} searchBarPlaceholder="Search repls..." throttle>
       <List.Section title="Results" subtitle={data?.length + ""}>
-        {data?.map((searchResult: SearchResult) => (
+        {data?.map((searchResult) => (
           <SearchListItem key={searchResult.title} searchResult={searchResult} />
         ))}
       </List.Section>
@@ -66,7 +67,7 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
 }
 
 /** Parse the response from the fetch query into something we can display */
-export async function parseFetchResponse(response: Response) {
+export async function parseFetchResponse(response: Response): Promise<SearchResult[]> {
   const res = await response.json();
   console.log(res);
 
@@ -79,16 +80,7 @@ export async function parseFetchResponse(response: Response) {
     }));
   }
 
-  if (res?.data?.currentUser) {
-    return res.data.currentUser.id
-  }
-
   return [];
 }
 
-interface SearchResult {
-  title: string;
-  description: string;
-  iconUrl: string;
-  url: string;
-}
+
