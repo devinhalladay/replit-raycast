@@ -8,7 +8,7 @@ import { SearchResult } from "./types";
 export default function Command() {
   const [searchText, setSearchText] = useState("");
 
-  const {userId, connectSid} = useCurrentUser();
+  const { userId, connectSid } = useCurrentUser();
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,
@@ -30,7 +30,7 @@ export default function Command() {
         q: searchText,
         ownerId: userId,
       },
-      query: FIND_REPLS_QUERY
+      query: FIND_REPLS_QUERY,
     }),
   });
 
@@ -82,5 +82,3 @@ export async function parseFetchResponse(response: Response): Promise<SearchResu
 
   return [];
 }
-
-
