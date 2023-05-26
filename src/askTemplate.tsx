@@ -14,7 +14,6 @@ export default function Command() {
 
   const {
     data: templatesManifest,
-    isLoading: loadingTemplatesManifest,
     error: templatesManifestError,
   } = useFetch("https://replit.com/graphql", {
     parseResponse: parseTemplatesManifestResponse,
