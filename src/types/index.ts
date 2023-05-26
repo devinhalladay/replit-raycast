@@ -44,3 +44,25 @@ export type TemplateReplsForCategory = {
     items: TemplateRepl[];
   };
 };
+
+// a single search result
+export interface SearchResult {
+  title: string;
+  description: string;
+  iconUrl: string;
+  url: string;
+  inviteUrl: string | null;
+  analyticsUrl: string;
+}
+
+export type SearchResultsResult = {
+  data: {
+    search: {
+      replResults: {
+        results: {
+          items: SearchResult[];
+        };
+      };
+    }
+  }
+}

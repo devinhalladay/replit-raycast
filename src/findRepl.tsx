@@ -1,12 +1,14 @@
-import { ActionPanel, Action, List, Detail } from "@raycast/api";
+import { Action, ActionPanel, Color, Detail, Icon, List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
-import useConnectSid from "./hooks/useConnectSid";
+import useCurrentUser from "./hooks/useCurrentUser";
+import { FIND_REPLS_QUERY } from "./queries";
+import { SearchResult } from "./types";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
 
-  const connectSid = useConnectSid();
+  const { userId, connectSid } = useCurrentUser();
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,
@@ -21,14 +23,14 @@ export default function Command() {
       "user-agent": "Raycast extension",
     },
     method: "POST",
+    keepPreviousData: false,
     body: JSON.stringify({
       operationName: "ReplSearch",
       variables: {
         q: searchText,
-        ownerId: 987731, // TODO: query for currentUser first
+        ownerId: userId,
       },
-      query:
-        "query ReplSearch($q: String!, $ownerId: Int!) {\n  search(\n    options: {categories: Repls, query: $q, categorySettings: {repls: {ownerId: $ownerId}}}\n  ) {__typename\n ... on UnauthorizedError {message} \n    ... on SearchQueryResults {\n      replResults {\n        results {\n          items {\n            id\n            title\n            slug\n            description\n            iconUrl\n  url\n          }\n        }\n      }\n    }\n  }\n}\n",
+      query: FIND_REPLS_QUERY,
     }),
   });
 
@@ -38,8 +40,18 @@ export default function Command() {
 
   return (
     <List isLoading={isLoading} onSearchTextChange={setSearchText} searchBarPlaceholder="Search repls..." throttle>
+      {searchText.length === 0 && !isLoading ? (
+        <List.EmptyView
+          title="Search your Repls"
+          description="Find any Repl created by your account."
+          icon={{
+            source: Icon.MagnifyingGlass,
+            tintColor: Color.Blue,
+          }}
+        />
+      ) : null}
       <List.Section title="Results" subtitle={data?.length + ""}>
-        {data?.map((searchResult: SearchResult) => (
+        {data?.map((searchResult) => (
           <SearchListItem key={searchResult.title} searchResult={searchResult} />
         ))}
       </List.Section>
@@ -48,6 +60,7 @@ export default function Command() {
 }
 
 function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
+  console.log(searchResult);
   return (
     <List.Item
       title={searchResult.title}
@@ -56,7 +69,16 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
       actions={
         <ActionPanel>
           <ActionPanel.Section>
-            <Action.OpenInBrowser title="Open in Browser" url={`https://replit.com/${searchResult.url}`} />
+            <Action.OpenInBrowser title="Open Workspace" url={`https://replit.com/${searchResult.url}`} icon={Icon.Code} />
+            <Action.OpenInBrowser title="Open Cover Page" url={`https://replit.com/${searchResult.url}?v=1`} icon={Icon.Eye} />
+            {searchResult.inviteUrl !== null ? (
+              <Action.CopyToClipboard
+                title="Copy Invite Link"
+                content={`https://replit.com/${searchResult.inviteUrl}`}
+                icon={Icon.AddPerson}
+              />
+            ) : null}
+            <Action.OpenInBrowser title="View Repl Analytics" url={`https://replit.com/${searchResult.analyticsUrl}`} icon={Icon.LineChart} />
           </ActionPanel.Section>
         </ActionPanel>
       }
@@ -65,25 +87,20 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
 }
 
 /** Parse the response from the fetch query into something we can display */
-async function parseFetchResponse(response: Response) {
+export async function parseFetchResponse(response: Response): Promise<SearchResult[]> {
   const res = await response.json();
   console.log(res);
 
   if (res?.data?.search?.replResults?.results?.items) {
-    return res.data.search.replResults.results.items.map((item: any) => ({
+    return res.data.search.replResults.results.items.map((item: SearchResult) => ({
       title: item.title,
       description: item.description,
       iconUrl: item.iconUrl,
       url: item.url,
+      inviteUrl: item.inviteUrl,
+      analyticsUrl: item.analyticsUrl,
     }));
   }
 
   return [];
-}
-
-interface SearchResult {
-  title: string;
-  description: string;
-  iconUrl: string;
-  url: string;
 }
