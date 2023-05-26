@@ -1,17 +1,34 @@
 import { ActionPanel, Action, List, Detail } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useConnectSid from "./hooks/useConnectSid";
 import { getPreferenceValues } from "@raycast/api";
+import { LocalStorage } from "@raycast/api";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
+  const [userId, setUserId] = useState<number | undefined>(undefined);
+  const [loadingLocal, setLoadingLocal] = useState(true);
 
   const connectSid = useConnectSid();
 
-  const {replitUserId} = getPreferenceValues();
+  // const {replitUserId} = getPreferenceValues();
 
-  const { data:userId, isLoading: loadingUser, error: userError } = useFetch("https://replit.com/graphql", {
+  useEffect(() => {
+    setLoadingLocal(true);
+
+    const getStorage = async () => {
+      const replitUserId = await LocalStorage.getItem<number>("replit-user-id");
+      setUserId(replitUserId);
+      setLoadingLocal(false);
+    }
+
+    getStorage();
+  }, []);
+
+
+  const { data:currentUser, isLoading: loadingUser, error: userError } = useFetch("https://replit.com/graphql", {
+    execute: !loadingLocal && !userId,
     parseResponse: parseFetchResponse,
     headers: {
       accept: "*/*",
@@ -29,11 +46,11 @@ export default function Command() {
       query:
         "query CurrentUser { currentUser { id } }",
     }),
+    onData: async (data) => {
+      await LocalStorage.setItem("replit-user-id", data);
+      setUserId(data);
+    }
   });
-
-  // const userId = useMemo(() => currentUser, [currentUser]);
-
-  // console.log('userId', userId)
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,
@@ -53,7 +70,7 @@ export default function Command() {
       operationName: "ReplSearch",
       variables: {
         q: searchText,
-        ownerId: parseInt(userId), // TODO: query for currentUser first
+        ownerId: userId,
       },
       query:
         "query ReplSearch($q: String!, $ownerId: Int!) {\n  search(\n    options: {categories: Repls, query: $q, categorySettings: {repls: {ownerId: $ownerId}}}\n  ) {__typename\n ... on UnauthorizedError {message} \n    ... on SearchQueryResults {\n      replResults {\n        results {\n          items {\n            id\n            title\n            slug\n            description\n            iconUrl\n  url\n          }\n        }\n      }\n    }\n  }\n}\n",
