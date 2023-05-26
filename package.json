@@ -27,6 +27,17 @@
       "mode": "view"
     }
   ],
+  "preferences": [
+    {
+      "name": "replitUserId",
+      "title": "Replit User ID",
+      "description": "Your Replit user ID. This can be found in the URL of your Replit profile page.",
+      "label": "User ID",
+      "placeholder": "123456",
+      "required": true,
+      "type": "textfield"
+    }
+  ],
   "dependencies": {
     "@raycast/api": "^1.52.1",
     "@raycast/utils": "^1.5.2"

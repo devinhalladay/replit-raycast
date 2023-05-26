@@ -1,12 +1,39 @@
 import { ActionPanel, Action, List, Detail } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useConnectSid from "./hooks/useConnectSid";
+import { getPreferenceValues } from "@raycast/api";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
 
   const connectSid = useConnectSid();
+
+  const {replitUserId} = getPreferenceValues();
+
+  const { data:userId, isLoading: loadingUser, error: userError } = useFetch("https://replit.com/graphql", {
+    parseResponse: parseFetchResponse,
+    headers: {
+      accept: "*/*",
+      "content-type": "application/json",
+      "x-requested-with": "1",
+      cookie: "connect.sid=" + connectSid,
+      origin: "https://replit.com",
+      referer: "https://replit.com/graphql",
+      "user-agent": "Raycast extension",
+    },
+    method: "POST",
+    keepPreviousData: false,
+    body: JSON.stringify({
+      operationName: "CurrentUser",
+      query:
+        "query CurrentUser { currentUser { id } }",
+    }),
+  });
+
+  // const userId = useMemo(() => currentUser, [currentUser]);
+
+  // console.log('userId', userId)
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,
@@ -21,11 +48,12 @@ export default function Command() {
       "user-agent": "Raycast extension",
     },
     method: "POST",
+    keepPreviousData: false,
     body: JSON.stringify({
       operationName: "ReplSearch",
       variables: {
         q: searchText,
-        ownerId: 987731, // TODO: query for currentUser first
+        ownerId: parseInt(userId), // TODO: query for currentUser first
       },
       query:
         "query ReplSearch($q: String!, $ownerId: Int!) {\n  search(\n    options: {categories: Repls, query: $q, categorySettings: {repls: {ownerId: $ownerId}}}\n  ) {__typename\n ... on UnauthorizedError {message} \n    ... on SearchQueryResults {\n      replResults {\n        results {\n          items {\n            id\n            title\n            slug\n            description\n            iconUrl\n  url\n          }\n        }\n      }\n    }\n  }\n}\n",
@@ -76,6 +104,10 @@ async function parseFetchResponse(response: Response) {
       iconUrl: item.iconUrl,
       url: item.url,
     }));
+  }
+
+  if (res?.data?.currentUser) {
+    return res.data.currentUser.id
   }
 
   return [];
