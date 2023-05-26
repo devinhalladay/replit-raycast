@@ -4,53 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import useConnectSid from "./hooks/useConnectSid";
 import { getPreferenceValues } from "@raycast/api";
 import { LocalStorage } from "@raycast/api";
+import useCurrentUser from "./hooks/useCurrentUser";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
-  const [userId, setUserId] = useState<number | undefined>(undefined);
-  const [loadingLocal, setLoadingLocal] = useState(true);
-
   const connectSid = useConnectSid();
 
-  // const {replitUserId} = getPreferenceValues();
-
-  useEffect(() => {
-    setLoadingLocal(true);
-
-    const getStorage = async () => {
-      const replitUserId = await LocalStorage.getItem<number>("replit-user-id");
-      setUserId(replitUserId);
-      setLoadingLocal(false);
-    }
-
-    getStorage();
-  }, []);
-
-
-  const { data:currentUser, isLoading: loadingUser, error: userError } = useFetch("https://replit.com/graphql", {
-    execute: !loadingLocal && !userId,
-    parseResponse: parseFetchResponse,
-    headers: {
-      accept: "*/*",
-      "content-type": "application/json",
-      "x-requested-with": "1",
-      cookie: "connect.sid=" + connectSid,
-      origin: "https://replit.com",
-      referer: "https://replit.com/graphql",
-      "user-agent": "Raycast extension",
-    },
-    method: "POST",
-    keepPreviousData: false,
-    body: JSON.stringify({
-      operationName: "CurrentUser",
-      query:
-        "query CurrentUser { currentUser { id } }",
-    }),
-    onData: async (data) => {
-      await LocalStorage.setItem("replit-user-id", data);
-      setUserId(data);
-    }
-  });
+  const userId = useCurrentUser();
 
   const { data, isLoading, error } = useFetch("https://replit.com/graphql", {
     execute: searchText.length > 0,
@@ -110,7 +70,7 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
 }
 
 /** Parse the response from the fetch query into something we can display */
-async function parseFetchResponse(response: Response) {
+export async function parseFetchResponse(response: Response) {
   const res = await response.json();
   console.log(res);
 
