@@ -56,32 +56,32 @@ export const TEMPLATES_QUERY = (category: number | null) => {
 };
 
 export const FIND_REPLS_QUERY = `
-query ReplSearch($q: String!, $ownerId: Int!) {
-  search(
-    options: {
-      categories: Repls
-      query: $q
-      categorySettings: { repls: { ownerId: $ownerId } }
-    }
-  ) {
-    __typename
-    ... on UnauthorizedError {
-      message
-    }
-    ... on SearchQueryResults {
-      replResults {
-        results {
-          items {
+query ReplSearch($q: String!) {
+  currentUser {
+    id
+    search {
+      repls(query: $q, count: 10) {
+        id
+        title
+        slug
+        description
+        isAlwaysOn
+        isPrivate
+        iconUrl
+        url
+        inviteUrl
+        analyticsUrl
+        owner {
+          ... on User {
             id
-            title
-            slug
-            description
-            isAlwaysOn
-            isPrivate
-            iconUrl
-            url
-            inviteUrl
-            analyticsUrl
+            username
+            image
+            fullName
+          }
+          ... on Team {
+            id
+            username
+            image
           }
         }
       }
@@ -149,4 +149,4 @@ export const SEARCH_TEMPLATES_QUERY = `
       }
     }
   }   
-  `
+  `;

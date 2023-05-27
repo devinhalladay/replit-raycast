@@ -61,7 +61,11 @@ export type SearchResult = {
   analyticsUrl: string;
   isAlwaysOn: boolean;
   isPrivate: boolean;
-}
+  owner: {
+    id: number;
+    username: string;
+  };
+};
 
 export type SearchResultsResult = {
   data: {
@@ -71,6 +75,6 @@ export type SearchResultsResult = {
           items: SearchResult[];
         };
       };
-    }
-  }
-}
+    };
+  };
+};
