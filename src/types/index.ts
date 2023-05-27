@@ -59,6 +59,8 @@ export type SearchResult = {
   url: string;
   inviteUrl: string | null;
   analyticsUrl: string;
+  isAlwaysOn: boolean;
+  isPrivate: boolean;
 }
 
 export type SearchResultsResult = {

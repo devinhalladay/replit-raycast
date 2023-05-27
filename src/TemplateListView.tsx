@@ -66,7 +66,7 @@ export default function TemplateListView({ category, title }: { category: number
             item.user.username === "replit"
               ? {
                   icon: {
-                    source: Icon.CheckCircle,
+                    source: Icon.CheckRosette,
                     tintColor: Color.Green,
                   },
                   tooltip: "Official",

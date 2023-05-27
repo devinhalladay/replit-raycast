@@ -76,6 +76,8 @@ query ReplSearch($q: String!, $ownerId: Int!) {
             title
             slug
             description
+            isAlwaysOn
+            isPrivate
             iconUrl
             url
             inviteUrl

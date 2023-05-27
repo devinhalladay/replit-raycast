@@ -1,18 +1,22 @@
-import { AI, Action, ActionPanel, Detail, Icon, Image, LaunchType, List, environment, launchCommand, showHUD } from "@raycast/api";
+import { AI, Action, ActionPanel, Color, Detail, Icon, Image, LaunchType, List, environment, launchCommand, showHUD } from "@raycast/api";
 import { useAI, useFetch } from "@raycast/utils";
 import { useEffect, useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 import { AI_TEMPLATES_STUB_QUERY, SEARCH_TEMPLATES_QUERY } from "./queries";
 import { TemplateRepl, TemplateStatus } from "./types";
 
-export default function Command() {
-  const [searchText, setSearchText] = useState("");
+export default function AskAI({
+  query = ""
+}: {
+  query?: string;
+}) {
+  const [searchText, setSearchText] = useState(query);
   const [searchTerms, setSearchterms] = useState<Array<string>>([]);
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>(TemplateStatus.Official);
 
   if (!environment.canAccess(AI)) {
     showHUD("This command requires access to the AI API. Upgrade to Raycast Pro to get access.")
-    return;
+    return null;
   }
 
   const { connectSid } = useCurrentUser();
@@ -130,15 +134,23 @@ export default function Command() {
       throttle
       isLoading={loadingTemplateResults || loadingKeywordResponse}
       isShowingDetail={!!templateResults?.length}
+      searchText={searchText}
+      searchBarPlaceholder="Describe your project idea…"
       searchBarAccessory={
         <List.Dropdown
-          tooltip="hi"
+          tooltip="Filter results"
           onChange={(value) => setSelectedStatus(value as TemplateStatus)}
           defaultValue={selectedStatus}
         >
-          <List.Dropdown.Item title="All" value={TemplateStatus.All} />
-          <List.Dropdown.Item title="Official" value={TemplateStatus.Official} />
-          <List.Dropdown.Item title="Community" value={TemplateStatus.Community} />
+          <List.Dropdown.Item title="All" value={TemplateStatus.All} icon={Icon.Globe} />
+          <List.Dropdown.Item title="Official" value={TemplateStatus.Official} icon={{
+            source: Icon.CheckRosette,
+            tintColor: Color.Green,
+          }} />
+          <List.Dropdown.Item title="Community" value={TemplateStatus.Community} icon={{
+            source: Icon.TwoPeople,
+            tintColor: Color.Blue,
+          }} />
         </List.Dropdown>
       }
     >

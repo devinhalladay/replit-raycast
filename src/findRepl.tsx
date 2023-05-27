@@ -1,9 +1,10 @@
-import { Action, ActionPanel, Color, Detail, Icon, List } from "@raycast/api";
+import { AI, Action, ActionPanel, Color, Detail, Icon, Image, List, environment } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
 import { FIND_REPLS_QUERY } from "./queries";
 import { SearchResult } from "./types";
+import AskAI from "./askTemplate";
 
 export default function Command() {
   const [searchText, setSearchText] = useState("");
@@ -39,18 +40,15 @@ export default function Command() {
   }
 
   return (
-    <List isLoading={isLoading} onSearchTextChange={setSearchText} searchBarPlaceholder="Search repls..." throttle>
+    <List isLoading={isLoading} onSearchTextChange={setSearchText} searchBarPlaceholder="Search your Repls..." throttle>
       {searchText.length === 0 && !isLoading ? (
         <List.EmptyView
           title="Search your Repls"
           description="Find any Repl created by your account."
-          icon={{
-            source: Icon.MagnifyingGlass,
-            tintColor: Color.Blue,
-          }}
+          icon={Icon.MagnifyingGlass}
         />
       ) : null}
-      <List.Section title="Results" subtitle={data?.length + ""}>
+      <List.Section title="Your Repls" subtitle={data?.length + ""}>
         {data?.map((searchResult) => (
           <SearchListItem key={searchResult.title} searchResult={searchResult} />
         ))}
@@ -65,12 +63,31 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
     <List.Item
       title={searchResult.title}
       subtitle={searchResult.description}
-      icon={{ source: searchResult.iconUrl }}
+      icon={{ source: searchResult.iconUrl, mask: Image.Mask.RoundedRectangle }}
+      accessories={[
+        searchResult.isAlwaysOn
+          ? {
+              tag: {
+                value: "Always On",
+                color: Color.Green
+              }
+            }
+          : {},
+        searchResult.isPrivate ? { icon: Icon.Lock } : {icon: Icon.Globe, tooltip: "Public Repl"},
+      ]}
       actions={
         <ActionPanel>
           <ActionPanel.Section>
-            <Action.OpenInBrowser title="Open Workspace" url={`https://replit.com/${searchResult.url}`} icon={Icon.Code} />
-            <Action.OpenInBrowser title="Open Cover Page" url={`https://replit.com/${searchResult.url}?v=1`} icon={Icon.Eye} />
+            <Action.OpenInBrowser
+              title="Open Workspace"
+              url={`https://replit.com/${searchResult.url}`}
+              icon={Icon.Code}
+            />
+            <Action.OpenInBrowser
+              title="Open Cover Page"
+              url={`https://replit.com/${searchResult.url}?v=1`}
+              icon={Icon.Eye}
+            />
             {searchResult.inviteUrl !== null ? (
               <Action.CopyToClipboard
                 title="Copy Invite Link"
@@ -78,7 +95,11 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
                 icon={Icon.AddPerson}
               />
             ) : null}
-            <Action.OpenInBrowser title="View Repl Analytics" url={`https://replit.com/${searchResult.analyticsUrl}`} icon={Icon.LineChart} />
+            <Action.OpenInBrowser
+              title="View Repl Analytics"
+              url={`https://replit.com/${searchResult.analyticsUrl}`}
+              icon={Icon.LineChart}
+            />
           </ActionPanel.Section>
         </ActionPanel>
       }
@@ -92,14 +113,7 @@ export async function parseFetchResponse(response: Response): Promise<SearchResu
   console.log(res);
 
   if (res?.data?.search?.replResults?.results?.items) {
-    return res.data.search.replResults.results.items.map((item: SearchResult) => ({
-      title: item.title,
-      description: item.description,
-      iconUrl: item.iconUrl,
-      url: item.url,
-      inviteUrl: item.inviteUrl,
-      analyticsUrl: item.analyticsUrl,
-    }));
+    return res.data.search.replResults.results.items.map((item: SearchResult) => item);
   }
 
   return [];

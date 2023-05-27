@@ -1,9 +1,10 @@
-import { Action, ActionPanel, Grid, Icon, useNavigation } from "@raycast/api";
+import { AI, Action, ActionPanel, Grid, Icon, environment, useNavigation } from "@raycast/api";
 import { useMemo } from "react";
 import TemplateList from "./TemplateListView";
 import useQuery from "./hooks/useQuery";
 import { CATEGORIES_QUERY } from "./queries";
 import { TemplateCategoriesResults } from "./types";
+import AskAI from "./askTemplate";
 
 const CategoryListView = () => {
   const { push } = useNavigation();
@@ -39,6 +40,7 @@ const CategoryListView = () => {
                 onAction={() => push(<TemplateList category={item.id} title={item.title} key={Math.random()} />)}
                 icon={Icon.List}
               />
+              {environment.canAccess(AI) ? <Action.Push title="Ask AI" target={<AskAI query={item.description} />} icon={Icon.Wand} /> : null}
             </ActionPanel>
           }
         />
