@@ -27,6 +27,23 @@ const CategoryListView = () => {
       columns={3}
       searchBarPlaceholder="Search categories…"
     >
+      <Grid.Item
+        title="All Templates"
+        subtitle="Search through all templates on Replit."
+        content={"all-templates-cover.png"}
+        actions={
+          <ActionPanel>
+            <Action
+              title="View templates"
+              onAction={() => push(<TemplateList category={null} title="All" key={Math.random()} />)}
+              icon={Icon.List}
+            />
+            {environment.canAccess(AI) ? (
+              <Action.Push title="Ask AI" target={<AskAI query="all" />} icon={Icon.Wand} />
+            ) : null}
+          </ActionPanel>
+        }
+      />
       {(results || []).map((item) => (
         <Grid.Item
           subtitle={item.description}
@@ -40,7 +57,9 @@ const CategoryListView = () => {
                 onAction={() => push(<TemplateList category={item.id} title={item.title} key={Math.random()} />)}
                 icon={Icon.List}
               />
-              {environment.canAccess(AI) ? <Action.Push title="Ask AI" target={<AskAI query={item.description} />} icon={Icon.Wand} /> : null}
+              {environment.canAccess(AI) ? (
+                <Action.Push title="Ask AI" target={<AskAI query={item.description} />} icon={Icon.Wand} />
+              ) : null}
             </ActionPanel>
           }
         />

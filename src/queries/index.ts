@@ -19,7 +19,7 @@ export const CATEGORIES_QUERY = `
 `;
 
 // Get all templates for a category by its ID
-export const TEMPLATES_QUERY = (category: number) => {
+export const TEMPLATES_QUERY = (category: number | null) => {
   return (
     `{
     templateRepls2(options: { count: 100, category:` +
