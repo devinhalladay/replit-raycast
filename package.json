@@ -3,7 +3,7 @@
   "name": "replit",
   "title": "Replit",
   "description": "Quickly create a Replit coding project in any programming language or framework.",
-  "icon": "logo.png",
+  "icon": "icon.png",
   "author": "devinhalladay",
   "owner": "replit",
   "categories": [
@@ -28,7 +28,7 @@
     },
     {
       "name": "askTemplate",
-      "title": "AI Template Suggestion (Beta)",
+      "title": "Find Templates with AI",
       "subtitle": "Replit",
       "description": "Describe your project idea and find a template to get started.",
       "mode": "view"

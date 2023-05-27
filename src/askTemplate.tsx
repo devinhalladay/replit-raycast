@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Detail, Icon, Image, LaunchType, List, launchCommand } from "@raycast/api";
+import { AI, Action, ActionPanel, Detail, Icon, Image, LaunchType, List, environment, launchCommand, showHUD } from "@raycast/api";
 import { useAI, useFetch } from "@raycast/utils";
 import { useEffect, useState } from "react";
 import useCurrentUser from "./hooks/useCurrentUser";
@@ -9,6 +9,11 @@ export default function Command() {
   const [searchText, setSearchText] = useState("");
   const [searchTerms, setSearchterms] = useState<Array<string>>([]);
   const [selectedStatus, setSelectedStatus] = useState<TemplateStatus>(TemplateStatus.Official);
+
+  if (!environment.canAccess(AI)) {
+    showHUD("This command requires access to the AI API. Upgrade to Raycast Pro to get access.")
+    return;
+  }
 
   const { connectSid } = useCurrentUser();
 
