@@ -60,7 +60,7 @@ query ReplSearch($q: String!) {
   currentUser {
     id
     search {
-      repls(query: $q, count: 10) {
+      repls(query: $q, count: 20) {
         id
         title
         slug
