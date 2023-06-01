@@ -50,18 +50,19 @@ export default function Command() {
       ) : null}
       <List.Section title="Your Repls" subtitle={data?.length + ""}>
         {data?.map((searchResult) => (
-          <SearchListItem key={searchResult.title} searchResult={searchResult} />
+          <SearchListItem key={searchResult.title} searchResult={searchResult} currentUserId={userId} />
         ))}
       </List.Section>
     </List>
   );
 }
 
-function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
-  console.log(searchResult);
+function SearchListItem({ searchResult, currentUserId }: { searchResult: SearchResult; currentUserId: number | null }) {
+  const title = searchResult.title;
+
   return (
     <List.Item
-      title={searchResult.title}
+      title={title}
       subtitle={searchResult.description}
       icon={{ source: searchResult.iconUrl, mask: Image.Mask.RoundedRectangle }}
       accessories={[
@@ -69,11 +70,19 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
           ? {
               tag: {
                 value: "Always On",
-                color: Color.Green
-              }
+                color: Color.Green,
+              },
             }
           : {},
-        searchResult.isPrivate ? { icon: Icon.Lock } : {icon: Icon.Globe, tooltip: "Public Repl"},
+        currentUserId !== searchResult.owner.id
+          ? {
+              tag: {
+                value: "@" + searchResult.owner.username,
+                color: Color.Orange,
+              },
+            }
+          : {},
+        searchResult.isPrivate ? { icon: Icon.Lock } : { icon: Icon.Globe, tooltip: "Public Repl" },
       ]}
       actions={
         <ActionPanel>
@@ -110,10 +119,9 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
 /** Parse the response from the fetch query into something we can display */
 export async function parseFetchResponse(response: Response): Promise<SearchResult[]> {
   const res = await response.json();
-  console.log(res);
 
-  if (res?.data?.search?.replResults?.results?.items) {
-    return res.data.search.replResults.results.items.map((item: SearchResult) => item);
+  if (res?.data?.currentUser?.search?.repls) {
+    return res?.data?.currentUser?.search?.repls.map((item: SearchResult) => item);
   }
 
   return [];
