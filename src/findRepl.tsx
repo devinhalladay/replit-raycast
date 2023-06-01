@@ -58,11 +58,7 @@ export default function Command() {
 }
 
 function SearchListItem({ searchResult, currentUserId }: { searchResult: SearchResult; currentUserId: number | null }) {
-  let title = searchResult.title;
-
-  if (currentUserId !== searchResult.owner.id) {
-    title = `@${searchResult.owner.username}/${title}`;
-  }
+  const title = searchResult.title;
 
   return (
     <List.Item
@@ -75,6 +71,14 @@ function SearchListItem({ searchResult, currentUserId }: { searchResult: SearchR
               tag: {
                 value: "Always On",
                 color: Color.Green,
+              },
+            }
+          : {},
+        currentUserId !== searchResult.owner.id
+          ? {
+              tag: {
+                value: "@" + searchResult.owner.username,
+                color: Color.Orange,
               },
             }
           : {},
